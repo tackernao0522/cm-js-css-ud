@@ -135,3 +135,62 @@ span {
 
 /* 詳細度 id > class > タグ */
 ```
+
+## 9. CSS 詳細度について
+
++ `01/04/index.html`<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="parent">
+        <span id="first" class="cls">こんにちは！ 日本！</span>
+        <span class="cls">こんにちは！ 日本！</span>
+        <span>こんにちは！ 日本！</span>
+        <span>こんにちは！ 日本！</span>
+    </div>
+</body>
+
+</html>
+```
+
+```css:style.css
+.parent {
+  color: blue;
+  font-weight: 600;
+}
+
+span {
+  color: purple;
+}
+
+.cls {
+  color: orange;
+}
+
+#first {
+  color: magenta;
+}
+
+/* 下から順に優先度が高い */
+
+/* .parentの中に配置されているspan要素 idが優先度高い span指定よりも詳細度が高い わからなくなったら検証ツールで確認してみる */
+.parent span {
+  color: red;
+}
+
+/* 上書きされる */
+.parent span {
+  color: black;
+}
+```
