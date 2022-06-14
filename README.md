@@ -22,3 +22,62 @@
 
 </html>
 ```
+
+## 7. HTMLのこれだけは知っておいて！インライン要素とブロック要素の使い分け
+
++ インライン要素は横に並ぶ(横幅と縦幅の指定ができない) ブロック要素は縦に並ぶ(横幅と縦幅の指定ができる)
+
++ `index.html`<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- インライン要素 横幅と縦幅は指定できない -->
+    <span>こんにちは！ 日本！</span>
+    <span>こんにちは！ 日本！</span>
+    <span>こんにちは！ 日本！</span>
+    <span>こんにちは！ 日本！</span>
+    <!-- ブロック要素 横幅と縦幅を指定出来る -->
+    <div>こんにちは！ 日本！</div>
+    <div>こんにちは！ 日本！</div>
+    <div>こんにちは！ 日本！</div>
+    <div>こんにちは！ 日本！</div>
+    <div>こんにちは！ 日本！</div>
+
+    <style>
+        body {
+            text-align: center;
+            /* inline要素を中央にしたい場合は親要素にtext-align: centerを指定する */
+        }
+
+        span {
+            /* display: block; block要素のような振る舞いになる */
+            display: inline-block;
+            /* inlineとblock要素の中間の振る舞いになる block要素には意味をなさない */
+            width: 100px;
+            height: 100px;
+            background-color: burlywood;
+        }
+
+        div {
+            /* display: inline; inline要素の振る舞いになる */
+            margin: 0 auto;
+            /* block要素の中央揃えの場合はこの指定をする */
+            width: 300px;
+            height: 400px;
+            background-color: magenta;
+        }
+    </style>
+</body>
+
+</html>
+```
