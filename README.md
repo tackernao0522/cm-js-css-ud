@@ -81,3 +81,57 @@
 
 </html>
 ```
+
+## 8. CSSとは? CSSの概要と文法について
+
++ `01/03/index.html`<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <span id="first" class="cls">こんにちは！ 日本！</span>
+    <span>こんにちは！ 日本！</span>
+    <span>こんにちは！ 日本！</span>
+    <span>こんにちは！ 日本！</span>
+    <!-- <div>こんにちは！ 日本！</div> -->
+    <style>
+
+    </style>
+</body>
+
+</html>
+```
+
++ `style.css`を作成<br>
+
+```css:style.css
+span {
+  display: inline-block;
+  /* ブロック要素の中央揃え*/
+  margin: 0 auto;
+  width: 100px;
+  height: 400px;
+  background-color: magenta;
+}
+
+.cls {
+  display: inline-block;
+  /* ブロック要素の中央揃え*/
+  margin: 0 auto;
+  width: 100px;
+  height: 400px;
+  background-color: gray;
+}
+
+/* 詳細度 id > class > タグ */
+```
