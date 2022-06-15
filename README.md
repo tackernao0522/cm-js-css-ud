@@ -242,3 +242,50 @@ https://docs.emmet.io/cheat-sheet/ <br>
   cursor: pointer;
 }
 ```
+
+## 14 Transitionプロパティーの使い方を学ぶ(ボタンにホバーアクションを追加)
+
++ `02/010/index.html`<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="container">
+    <button class="btn">Button</button>
+  </div>
+</body>
+
+</html>
+```
+
++ `02/010/style.css`<br>
+
+```css:style.css
+#container {
+  text-align: center;
+}
+.btn {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  padding: 10px 40px;
+  margin: 50px 0;
+  font-weight: 600; /* 100〜900 */
+  cursor: pointer;
+  transition: color 0.3s ease 1s, background-color 0.3s ease 2s; /* 1秒後に文字色が変わり2秒後に背景色が変わる */
+}
+.btn:hover {
+  background-color: black;
+  color: white;
+}
+```
