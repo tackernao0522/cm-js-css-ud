@@ -154,8 +154,8 @@ span {
 
 <body>
     <div class="parent">
-        <span id="first" class="cls">こんにちは！ 日本！</span>
-        <span class="cls">こんにちは！ 日本！</span>
+      <span id="first" class="cls">こんにちは！ 日本！</span>
+      <span class="cls">こんにちは！ 日本！</span>
         <span>こんにちは！ 日本！</span>
         <span>こんにちは！ 日本！</span>
     </div>
@@ -192,5 +192,53 @@ span {
 /* 上書きされる */
 .parent span {
   color: black;
+}
+```
+
+## 10 コードの自動補完
+
+https://docs.emmet.io/cheat-sheet/ <br>
+
+# セクション4: CSSの基礎から始める(Transition編)
+
+## 13. まずはボタンを作りながら、CSSプロパティーを設定する
+
++ `02/019/index.html` <br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="container">
+    <button class="btn">Button</button>
+  </div>
+</body>
+
+</html>
+```
+
++ `02/019/style.css`<br>
+
+```css:style.css
+#container {
+  text-align: center;
+}
+.btn {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  padding: 10px 40px;
+  margin: 50px 0;
+  font-weight: 600; /* 100〜900 */
+  cursor: pointer;
 }
 ```
