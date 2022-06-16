@@ -10,7 +10,6 @@
   margin: 50px 0;
   font-weight: 600;
   cursor: pointer;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -28,12 +27,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
-  -webkit-transition: -webkit-transform 0.3s;
-  transition: -webkit-transform 0.3s;
+  transform: translateX(-100%);
   transition: transform 0.3s;
-  transition: transform 0.3s, -webkit-transform 0.3s;
   z-index: -1;
 }
 
@@ -42,7 +37,6 @@
 }
 
 .btn.slide-bg:hover span {
-  -webkit-transform: none;
-          transform: none;
+  transform: none;
 }
 /*# sourceMappingURL=style.css.map */

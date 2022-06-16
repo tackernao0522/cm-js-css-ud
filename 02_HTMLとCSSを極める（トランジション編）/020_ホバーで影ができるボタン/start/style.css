@@ -10,7 +10,6 @@
   margin: 50px 0;
   font-weight: 600;
   cursor: pointer;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 

@@ -5,10 +5,8 @@
 .answer .btn {
   position: relative;
   display: inline-block;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-perspective: 300px;
-          perspective: 300px;
+  transform-style: preserve-3d;
+  perspective: 300px;
   width: 150px;
   height: 50px;
   margin: 0 auto;
@@ -24,33 +22,27 @@
   border: 1px solid black;
   line-height: 48px;
   text-align: center;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  -webkit-transform-origin: center center -25px;
-          transform-origin: center center -25px;
+  transform-origin: center center -25px;
 }
 
 .answer .btn.cubic .hovering {
   background-color: black;
   color: white;
-  -webkit-transform: rotateX(90deg);
-          transform: rotateX(90deg);
+  transform: rotateX(90deg);
 }
 
 .answer .btn.cubic .default {
   background-color: white;
   color: black;
-  -webkit-transform: rotateX(0);
-          transform: rotateX(0);
+  transform: rotateX(0);
 }
 
 .answer .btn.cubic:hover .hovering {
-  -webkit-transform: rotateX(0);
-          transform: rotateX(0);
+  transform: rotateX(0);
 }
 
 .answer .btn.cubic:hover .default {
-  -webkit-transform: rotateX(-90deg);
-          transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
 }
 /*# sourceMappingURL=answer.css.map */

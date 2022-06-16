@@ -36,7 +36,7 @@ Stylesheet: 1280px以上のモニタで適用
 ******************************************************************/
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (min-resolution: 192dpi) {
   /******************************************************************
 
 Stylesheet: Retinaディスプレイで適用

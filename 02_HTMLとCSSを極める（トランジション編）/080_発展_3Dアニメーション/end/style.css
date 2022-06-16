@@ -10,23 +10,19 @@
   margin: 50px 0;
   font-weight: 600;
   cursor: pointer;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
 .btn.cover-3d {
   position: relative;
   z-index: 1;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-perspective: 300px;
-          perspective: 300px;
+  transform-style: preserve-3d;
+  perspective: 300px;
 }
 
 .btn.cover-3d span {
   display: inline-block;
-  -webkit-transform: translateZ(20px);
-          transform: translateZ(20px);
+  transform: translateZ(20px);
 }
 
 .btn.cover-3d::before {
@@ -38,12 +34,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transform: rotateX(90deg);
-          transform: rotateX(90deg);
-  -webkit-transition: all 0.3s;
+  transform: rotateX(90deg);
   transition: all 0.3s;
-  -webkit-transform-origin: top center;
-          transform-origin: top center;
+  transform-origin: top center;
   opacity: 0;
 }
 
@@ -52,19 +45,15 @@
 }
 
 .btn.cover-3d:hover::before {
-  -webkit-transform: none;
-          transform: none;
+  transform: none;
   opacity: 1;
 }
 
 #axis {
   position: relative;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  -webkit-perspective: 300px;
-          perspective: 300px;
-  -webkit-perspective-origin: 180px 200px;
-          perspective-origin: 180px 200px;
+  transform-style: preserve-3d;
+  perspective: 300px;
+  perspective-origin: 180px 200px;
 }
 
 #axis span {
@@ -73,17 +62,14 @@
   background-color: black;
   width: 100px;
   height: 3px;
-  -webkit-transform-origin: bottom left;
-          transform-origin: bottom left;
+  transform-origin: bottom left;
 }
 
 #axis span:nth-child(2) {
-  -webkit-transform: rotateZ(90deg);
-          transform: rotateZ(90deg);
+  transform: rotateZ(90deg);
 }
 
 #axis span:nth-child(3) {
-  -webkit-transform: rotateY(90deg);
-          transform: rotateY(90deg);
+  transform: rotateY(90deg);
 }
 /*# sourceMappingURL=style.css.map */

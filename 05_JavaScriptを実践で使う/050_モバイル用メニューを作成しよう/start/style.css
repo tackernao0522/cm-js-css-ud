@@ -11,10 +11,7 @@
   height: 2px;
   display: block;
   margin-bottom: 9px;
-  -webkit-transition: -webkit-transform 0.7s;
-  transition: -webkit-transform 0.7s;
   transition: transform 0.7s;
-  transition: transform 0.7s, -webkit-transform 0.7s;
 }
 
 .mobile-menu-icon > span:last-child {
@@ -30,23 +27,17 @@
 }
 
 .menu-open .mobile-menu-icon > span:nth-child(1) {
-  -webkit-transition-delay: 70ms;
-          transition-delay: 70ms;
-  -webkit-transform: translateY(11px) rotate(135deg);
-          transform: translateY(11px) rotate(135deg);
+  transition-delay: 70ms;
+  transform: translateY(11px) rotate(135deg);
 }
 
 .menu-open .mobile-menu-icon > span:nth-child(2) {
-  -webkit-transition-delay: 0s;
-          transition-delay: 0s;
-  -webkit-transform: translateX(-18px) scaleX(0);
-          transform: translateX(-18px) scaleX(0);
+  transition-delay: 0s;
+  transform: translateX(-18px) scaleX(0);
 }
 
 .menu-open .mobile-menu-icon > span:nth-child(3) {
-  -webkit-transition-delay: 140ms;
-          transition-delay: 140ms;
-  -webkit-transform: translateY(-11px) rotate(-135deg);
-          transform: translateY(-11px) rotate(-135deg);
+  transition-delay: 140ms;
+  transform: translateY(-11px) rotate(-135deg);
 }
 /*# sourceMappingURL=style.css.map */

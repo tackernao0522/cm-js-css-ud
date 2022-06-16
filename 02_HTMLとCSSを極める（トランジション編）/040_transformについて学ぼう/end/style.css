@@ -3,9 +3,7 @@
   height: 100px;
   margin: 0 auto;
   background-color: orangered;
-  -webkit-transform: translateX(50px) scaleY(2);
-          transform: translateX(50px) scaleY(2);
-  -webkit-transform-origin: center center;
-          transform-origin: center center;
+  transform: translateX(50px) scaleY(2);
+  transform-origin: center center;
 }
 /*# sourceMappingURL=style.css.map */

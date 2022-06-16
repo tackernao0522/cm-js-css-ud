@@ -289,3 +289,37 @@ https://docs.emmet.io/cheat-sheet/ <br>
   color: white;
 }
 ```
+
+## 15. [Sass] CSSをSassで記述する
+
+参考: https://sass-lang.com/ <br>
+
++ `mv 02_HTMLとCSSを極める（トランジション編）/010_ホバーで色が変わるボタン/start/style.css 02_HTMLとCSSを極める（トランジション編）/010_ホバーで色が変わるボタン/start/style.scss`を実行<br>
+
++ `02_HTMLとCSSを極める（トランジション編）/010_ホバーで色が変わるボタン/start/style.scss`を編集<br>
+
+```scss:style.scss
+$cWhite: white;
+$cBlack: black;
+
+#container {
+  text-align: center;
+}
+.btn {
+  background-color: $cWhite;
+  color: $cBlack;
+  border: 1px solid $cBlack;
+  padding: 10px 40px;
+  margin: 50px 0;
+  font-weight: 600; /* 100〜900 */
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $cBlack;
+    color: $cWhite;
+  }
+}
+```
+
++ `Watch Sass`をクリック<br>
