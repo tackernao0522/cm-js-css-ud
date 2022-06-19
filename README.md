@@ -432,3 +432,72 @@ $cBlack: black;
 </body>
 </html>
 ```
+
+## 21. [演習] 色々なエフェクトのボタンを作ってみよう
+
++ `02_HTMLとCSSを極める（トランジション編）/030_演習_色んなボタンを作ってみよう/try.scss`を編集<br>
+
+```scss:try.scss
+$cWhite: white;
+$cBlack: black;
+
+.try {
+  & .btn {
+    position: relative;
+    display: inline-block;
+    background-color: $cWhite;
+    border: 1px solid $cBlack;
+    font-weight: 600;
+    padding: 10px 40px;
+    margin: 10px auto;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: $cBlack;
+    text-decoration: none !important; // 詳細度を無視する
+
+    /* ここにボタンのスタイルを追加していこう */
+    &.float:hover {
+      background-color: $cBlack;
+      color: white;
+      box-shadow: 5px 5px 10px 0 rgb(0 0 0 / 50%);
+    }
+
+    &.filled {
+      background-color: $cBlack;
+      color: $cWhite;
+      box-shadow: 5px 5px 10px 0 rgb(0 0 0 / 50%);
+
+      &:hover {
+        background-color: $cWhite;
+        color: $cBlack;
+        box-shadow: none;
+      }
+    }
+
+    &.letter-spacing:hover {
+      background-color: $cBlack;
+      letter-spacing: 3px;
+      color: $cWhite;
+    }
+
+    &.shadow {
+      box-shadow: none;
+
+      &:hover {
+        transform: translate(-2.5px, -2.5px);
+        box-shadow: 5px 5px 0 0 $cBlack;
+      }
+    }
+
+    &.solid {
+      box-shadow: 2px 2px 0 0 $cBlack;
+      border-radius: 7px;
+
+      &:hover {
+        transform: translate(2px, 2px);
+        box-shadow: none;
+      }
+    }
+  }
+}
+```

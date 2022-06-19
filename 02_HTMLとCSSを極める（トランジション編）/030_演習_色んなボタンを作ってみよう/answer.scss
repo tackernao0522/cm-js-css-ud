@@ -53,7 +53,7 @@ $cBlack: black;
       box-shadow: none;
 
       &:hover {
-        transform: translate(-2.5px, -2.5px);
+        transform: translate(-2.5px, -2.5px); // 第1引数はx軸方向へずれる 第2引数はy軸方向へずれる
         box-shadow: 5px 5px 0 0 $cBlack;
       }
     }
