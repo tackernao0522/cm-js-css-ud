@@ -7,7 +7,6 @@ img {
   position: relative;
   overflow: hidden;
 }
-
 .cover-slide::after {
   content: "";
   position: absolute;
@@ -19,7 +18,6 @@ img {
   background-color: #eaebe6;
   opacity: 0;
 }
-
 .cover-slide.inview::after {
   opacity: 1;
   animation-name: kf-cover-slide;
@@ -49,11 +47,9 @@ img {
     transform: scaleX(0);
   }
 }
-
 .img-zoom, .bg-img-zoom {
   opacity: 0;
 }
-
 .inview .img-zoom, .inview .bg-img-zoom {
   opacity: 1;
   transition: transform 0.3s ease;
@@ -65,7 +61,6 @@ img {
   animation-direction: normal;
   animation-fill-mode: none;
 }
-
 .inview .img-zoom:hover, .inview .bg-img-zoom:hover {
   transform: scale(1.05);
 }
@@ -85,7 +80,6 @@ img {
     opacity: 1;
   }
 }
-
 .hover-darken::before {
   content: "";
   position: absolute;
@@ -104,7 +98,6 @@ img {
   animation-direction: normal;
   animation-fill-mode: none;
 }
-
 .hover-darken:hover::before {
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -120,10 +113,8 @@ img {
 .img-bg50 {
   position: relative;
 }
-
 .img-bg50::before {
   display: block;
-  content: '';
+  content: "";
   padding-top: 50%;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

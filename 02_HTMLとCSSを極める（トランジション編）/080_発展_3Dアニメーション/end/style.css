@@ -12,19 +12,16 @@
   cursor: pointer;
   transition: all 0.3s;
 }
-
 .btn.cover-3d {
   position: relative;
   z-index: 1;
   transform-style: preserve-3d;
   perspective: 300px;
 }
-
 .btn.cover-3d span {
   display: inline-block;
   transform: translateZ(20px);
 }
-
 .btn.cover-3d::before {
   content: "";
   display: inline-block;
@@ -39,11 +36,9 @@
   transform-origin: top center;
   opacity: 0;
 }
-
 .btn.cover-3d:hover {
   color: white;
 }
-
 .btn.cover-3d:hover::before {
   transform: none;
   opacity: 1;
@@ -55,7 +50,6 @@
   perspective: 300px;
   perspective-origin: 180px 200px;
 }
-
 #axis span {
   display: inline-block;
   position: absolute;
@@ -64,12 +58,9 @@
   height: 3px;
   transform-origin: bottom left;
 }
-
 #axis span:nth-child(2) {
   transform: rotateZ(90deg);
 }
-
 #axis span:nth-child(3) {
   transform: rotateY(90deg);
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

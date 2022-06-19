@@ -7,8 +7,6 @@ strong {
 .done {
   color: green;
 }
-
 .done::before {
-  content: '✔';
-}
-/*# sourceMappingURL=style.css.map */
+  content: "✔";
+}/*# sourceMappingURL=style.css.map */

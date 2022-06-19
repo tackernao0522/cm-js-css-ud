@@ -12,13 +12,11 @@
   cursor: pointer;
   transition: all 0.3s;
 }
-
 .btn.slide-bg {
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
-
 .btn.slide-bg span {
   display: inline-block;
   width: 100%;
@@ -31,12 +29,9 @@
   transition: transform 0.3s;
   z-index: -1;
 }
-
 .btn.slide-bg:hover {
   color: white;
 }
-
 .btn.slide-bg:hover span {
   transform: none;
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

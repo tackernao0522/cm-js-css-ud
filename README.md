@@ -377,3 +377,58 @@ $cBlack: black;
 
 </html>
 ```
+
+## 20. ホバーで影ができるボタンを作ってみよう
+
++ `02_HTMLとCSSを極める（トランジション編）/020_ホバーで影ができるボタン/start/style.scss`を編集<br>
+
+```scss:style.scss
+$cWhite: white;
+$cBlack: black;
+
+#container {
+  text-align: center;
+}
+
+.btn {
+  background-color: $cWhite;
+  color: $cBlack;
+  border: 1px solid $cBlack;
+  padding: 10px 40px;
+  margin: 50px 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &.float {
+    &:hover {
+      box-shadow: 5px 5px 10px rgb(0 0 0 / 50%);
+    }
+  }
+
+  // &:hover {
+  //   background-color: $cBlack;
+  //   color: $cWhite;
+  // }
+}
+```
+
++ `02_HTMLとCSSを極める（トランジション編）/020_ホバーで影ができるボタン/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <button class="btn float">Button</button>
+    </div>
+</body>
+</html>
+```

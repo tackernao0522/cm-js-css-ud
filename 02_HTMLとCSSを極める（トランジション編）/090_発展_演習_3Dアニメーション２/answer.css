@@ -12,7 +12,6 @@
   margin: 0 auto;
   cursor: pointer;
 }
-
 .answer .btn.cubic span {
   position: absolute;
   top: 0;
@@ -25,24 +24,19 @@
   transition: all 0.3s;
   transform-origin: center center -25px;
 }
-
 .answer .btn.cubic .hovering {
   background-color: black;
   color: white;
   transform: rotateX(90deg);
 }
-
 .answer .btn.cubic .default {
   background-color: white;
   color: black;
   transform: rotateX(0);
 }
-
 .answer .btn.cubic:hover .hovering {
   transform: rotateX(0);
 }
-
 .answer .btn.cubic:hover .default {
   transform: rotateX(-90deg);
-}
-/*# sourceMappingURL=answer.css.map */
+}/*# sourceMappingURL=answer.css.map */
