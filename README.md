@@ -323,3 +323,57 @@ $cBlack: black;
 ```
 
 + `Watch Sass`をクリック<br>
+
+## 17 [おさらい] CSSセレクターとSassネスティング
+
++ `02_HTMLとCSSを極める（トランジション編）/015_CSSセレクターとSassでの記法/start/style.scss`を実行<br>
+
++ `style.scss`を編集<br>
+
+```scss:style.scss
+.parent {
+  color: blue;
+  // 子要素だけに適用
+  & > .element {
+    color: purple;
+
+    &.second-child {
+      color: black;
+    }
+  }
+}
+.element {
+  color: red;
+}
+```
+
++ `02_HTMLとCSSを極める（トランジション編）/015_CSSセレクターとSassでの記法/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="parent">
+    親要素
+    <div class="element">子要素</div>
+    <div class="element second-child">子要素</div>
+    <div class="element">
+      子要素
+      <div class="element">
+        孫要素
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+```
