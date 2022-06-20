@@ -1,3 +1,8 @@
+## 23. Transform プロパティーの使い方をマスターしよう
+
++ `02_HTMLとCSSを極める（トランジション編）/040_transformについて学ぼう/start/style.scss`を編集<br>
+
+```scss:style.scss
 .rect {
   width: 100px;
   height: 100px;
@@ -10,3 +15,24 @@
   // アニメーションを扱う場合にはtransformを使った方が良い
   transform-origin: center center; // 元々あった物体の左上を支点にする bottom left: 左下を支点にする bottom right: 右下を支点にする center center: センターを支点にする -20px -20pxと任意の値も設定できる
 }
+```
+
++ `02_HTMLとCSSを極める（トランジション編）/040_transformについて学ぼう/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div class="rect"></div>
+    </div>
+</body>
+</html>
+```
