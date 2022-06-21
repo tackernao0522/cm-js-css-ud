@@ -36,3 +36,246 @@
 </body>
 </html>
 ```
+
+## 24 PositionとZ-indexをマスターして思い通りのレイアウトを組む
+
++ position: 画面の決まった位置に要素を移動したり、画面の特定の位置に要素を固定して表示したりするCSSのプロパティになる<br>
+
++ デフォルト値としては`position: static;`が全てにふられている<br>
+
++ `position: relative;` :現在表示されている位置から相対的なポジションを取る場合に設定する(これだけだと何も変わらない)<br>
+
++ `position: absolute;` : 親要素の`relativeがついているものの左上からの絶対値で要素を表示する時に使う。(この場合親要素のcontainerの高さが0になる)
+
++ `02_HTMLとCSSを極める（トランジション編）/050_positionとz-indexについて学ぼう/start/style.scss`を編集<br>
+
+```scss:style.scss
+#container {
+  padding: 1rem;
+  position: relative; // これを消すとブラウザの画面の左上が基準になる
+  background-color: gray;
+}
+
+div {
+  font-weight: 600;
+  padding: 0.5rem;
+  font-size: 1.1em;
+  width: 150px;
+  height: 150px;
+  box-shadow: 7px 7px 0 0 #000;
+}
+
+.div-1 {
+  background: orange;
+  position: absolute;
+  top: 0; // 親要素の左上に固定される
+  left: 0; // 親要素の左上に固定される
+}
+.div-2 {
+  background: tomato;
+  display: none;
+}
+.div-3 {
+  background: teal;
+  display: none;
+}
+.div-4 {
+  width: 80px;
+  height: 80px;
+  background-color: violet;
+}
+```
++ `z-index:`は`position:`が`static`以外で設定されていることが絶対条件である。<br>
+
++ `02_HTMLとCSSを極める（トランジション編）/050_positionとz-indexについて学ぼう/start/style.scss`を編集<br>
+
+```scss:style.scss
+#container {
+  padding: 1rem;
+  position: relative;
+  background-color: gray;
+}
+
+div {
+  font-weight: 600;
+  padding: 0.5rem;
+  font-size: 1.1em;
+  width: 150px;
+  height: 150px;
+  box-shadow: 7px 7px 0 0 #000;
+}
+
+.div-1 {
+  background: orange;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20; // .div-2よりも大きい数値を設定すると前面に出て表示される
+}
+.div-2 {
+  background: tomato;
+  position: relative; // 親要素のcontainerのheightは復活する
+  z-index: 30;
+}
+.div-3 {
+  background: teal;
+  display: none;
+}
+.div-4 {
+  width: 80px;
+  height: 80px;
+  background-color: violet;
+}
+```
+
++ `02_HTMLとCSSを極める（トランジション編）/050_positionとz-indexについて学ぼう/start/style.scss`を編集<br>
+
++ `z-index: auto;`の場合はローカルコンテキストを生成しない(z-indexを書かない場合も初期値はz-index: auto;になっている)<br>
+
+```scss:style.scss
+#container {
+  padding: 1rem;
+  position: relative;
+  background-color: gray;
+  z-index: 1;
+}
+
+div {
+  font-weight: 600;
+  padding: 0.5rem;
+  font-size: 1.1em;
+  width: 150px;
+  height: 150px;
+  box-shadow: 7px 7px 0 0 #000;
+}
+
+.div-1 {
+  background: orange;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20; // .div-2よりも大きい数値を設定すると前面に出て表示される
+}
+.div-2 {
+  background: tomato;
+  position: relative; // 親要素のcontainerのheightは復活する
+  z-index: 30;
+}
+.div-3 {
+  background: teal;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 100;
+}
+.div-4 {
+  width: 80px;
+  height: 80px;
+  background-color: violet;
+  z-index: 50;
+  position: relative;
+}
+```
+
++ `02_HTMLとCSSを極める（トランジション編）/050_positionとz-indexについて学ぼう/start/style.scss`を編集<br>
+
++ `position: fixed;` ウィンドウの特定の位置に固定して表示することができる
+
+```scss:style.scss
+#container {
+  padding: 1rem;
+  position: relative;
+  background-color: gray;
+  height: 1000px; // スクロールしてもdiv-1はposition: fixed;で固定されているのでdiv-1は固定されて動かない
+}
+
+div {
+  font-weight: 600;
+  padding: 0.5rem;
+  font-size: 1.1em;
+  width: 150px;
+  height: 150px;
+  box-shadow: 7px 7px 0 0 #000;
+}
+
+.div-1 {
+  background: orange;
+  position: fixed;
+  top: 0; // 上に固定
+  // bottom: 0; // 下に固定
+  left: 0;
+  z-index: 20; // .div-2よりも大きい数値を設定すると前面に出て表示される
+}
+.div-2 {
+  background: tomato;
+  position: relative; // 親要素のcontainerのheightは復活する
+  z-index: 30;
+}
+.div-3 {
+  background: teal;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  z-index: 100;
+}
+.div-4 {
+  width: 80px;
+  height: 80px;
+  background-color: violet;
+  z-index: 50;
+  position: relative;
+}
+```
+
++ `02_HTMLとCSSを極める（トランジション編）/050_positionとz-indexについて学ぼう/start/style.scss`を編集<br>
+
++ `postion: sticky;` (この場合はdiv-4が上から30pxの位置に達した時点で追従してくるようになる 親要素の中で稼働できるようになる div-3がdiv-4と同じ高さであれば追従してこないので、heightをdiv-3に指定するとheight 800px分は下に追従してdiv-4が動いてくることになる z-indexも通常通り使える)<br>
+
++ `stickyを使うときの注意点`: stickyの親要素に`overflow: hidden`という設定値がついている場合はstickyが動作しなくなってしまう。
+
+```scss:style.scss
+#container {
+  padding: 1rem;
+  position: relative;
+  background-color: gray;
+  height: 1000px; // スクロールしてもdiv-1はposition: fixed;で固定されているのでdiv-1は固定されて動かない
+}
+
+div {
+  font-weight: 600;
+  padding: 0.5rem;
+  font-size: 1.1em;
+  width: 150px;
+  height: 150px;
+  box-shadow: 7px 7px 0 0 #000;
+}
+
+.div-1 {
+  background: orange;
+  position: absolute;
+  // top: 0; // 上に固定
+  bottom: 0; // 下に固定
+  left: 0;
+  z-index: 20; // .div-2よりも大きい数値を設定すると前面に出て表示される
+}
+.div-2 {
+  background: tomato;
+  position: relative; // 親要素のcontainerのheightは復活する
+  z-index: 30;
+}
+.div-3 {
+  background: teal;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  height: 800px;
+}
+.div-4 {
+  width: 80px;
+  height: 80px;
+  background-color: violet;
+  z-index: 1;
+  position: sticky;
+  top: 30px;
+}
+```
