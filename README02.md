@@ -279,3 +279,77 @@ div {
   top: 30px;
 }
 ```
+
+## 25. Transform, Position, Z-indexの復讐！背景色がスライドするボタンを作ってみよう
+
++ `02_HTMLとCSSを極める（トランジション編）/060_背景色がスライドするボタン/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="container">
+        <button class="btn slide-bg"><span></span>Button</button>
+    </div>
+</body>
+
+</html>
+```
+
++ `02_HTMLとCSSを極める（トランジション編）/060_背景色がスライドするボタン/start/style.scss`を編集<br>
+
+```scss:style.scss
+$cWhite: white;
+$cBlack: black;
+
+#container {
+  text-align: center;
+}
+
+.btn {
+  background-color: $cWhite;
+  color: $cBlack;
+  border: 1px solid $cBlack;
+  padding: 10px 40px;
+  margin: 50px 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &.slide-bg {
+    position: relative;
+    overflow: hidden; // ボタンの枠の外が非表示になる為、hoverしてない時は見えなくなっている　visibleをすると表示される
+    z-index: 1; // ローカルコンテキストの設定
+
+    & span { // spanはinline要素なのでinline-blockとして、widthとheihtを指定できるようにする
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background-color: $cBlack;
+      position: absolute; // 親要素のbtm.slide-bg classを基準とする これにrelativeがないとウィンドウが基準となる為。画面全体が真っ黒になる
+      top: 0;
+      left: 0;
+      transform: translateX(-100%); // ボタンの左に100%分ずれることになる(黒背景)
+      transition: transform 0.3s;
+      z-index: -1; // ローカルコンテキストの設定
+    }
+
+    &:hover {
+      color: $cWhite;
+
+      & span {
+        transform: none; // noneとすると黒背景が元の位置に戻ることになる(hover時にボタンの枠に黒の背景色が被さる)
+      }
+    }
+  }
+}
+```
