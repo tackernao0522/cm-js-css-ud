@@ -20,7 +20,8 @@ $cBlack: black;
     overflow: hidden;
     z-index: 1;
 
-    & span {
+    &::before {
+      content: ''; // 空文字として設定する (この場合はボタン要素の手前に空白が設定されることになる)
       display: inline-block;
       width: 100%;
       height: 100%;
@@ -36,8 +37,8 @@ $cBlack: black;
     &:hover {
       color: $cWhite;
 
-      & span {
-        transform: none;
+      &::before {
+        transform: none; // noneとすると黒背景が元の位置に戻ることになる
       }
     }
   }

@@ -353,3 +353,78 @@ $cBlack: black;
   }
 }
 ```
+
+## 26. ::before?::after?擬似要素を使って無駄な記述を減らそう
+
++ `02_HTMLとCSSを極める（トランジション編）/070_擬似要素について/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <button class="btn slide-bg"><Button>Button</button> <!-- spanタグを削除 -->
+    </div>
+</body>
+</html>
+```
+
+
++ `02_HTMLとCSSを極める（トランジション編）/070_擬似要素について/start/style.scss`を編集<br>
+
+```scss:style.scss
+$cWhite: white;
+$cBlack: black;
+
+#container {
+  text-align: center;
+}
+
+.btn {
+  background-color: $cWhite;
+  color: $cBlack;
+  border: 1px solid $cBlack;
+  padding: 10px 40px;
+  margin: 50px 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &.slide-bg {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &::before {
+      content: ''; // 空文字として設定する (この場合はボタン要素の手前に空白が設定されることになる)
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background-color: $cBlack;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+      z-index: -1;
+    }
+
+    &:hover {
+      color: $cWhite;
+
+      &::before {
+        transform: none; // noneとすると黒背景が元の位置に戻ることになる
+      }
+    }
+  }
+}
+```
+
+※ 空タグ(imgやhrタグなど終了タグを持たないもの)は::before, ::afterは使えない<br>
