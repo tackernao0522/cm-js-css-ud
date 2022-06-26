@@ -428,3 +428,7 @@ $cBlack: black;
 ```
 
 ※ 空タグ(imgやhrタグなど終了タグを持たないもの)は::before, ::afterは使えない<br>
+
+## 27. タイミングファンクション(a.k.a easing-function)でアニメーションをオサレにする
+
+`transition: transform 0.3s ease;` easeのとこを変えてみる(検証ツール) overflow: hidden;をチェック外しておく<br>
