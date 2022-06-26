@@ -15,10 +15,19 @@ $cBlack: black;
   cursor: pointer;
   transition: all 0.3s;
 
-  &.slide-bg {
+  &.cover-3d {
     position: relative;
-    overflow: hidden;
+    // overflow: hidden; いらなくなる
     z-index: 1;
+    transform-style: preserve-3d; // Z軸が追加される preserve-3dは子要素に適用される この場合は &::beforeの擬似要素に3dが適用されることになる
+    perspective: 300px; // 奥行きを示す
+
+    & span {
+      display: inline-block;
+      transform: translateZ(
+        20px
+      ); // inline要素には適用できない span要素はinline要素 tranlate3d(20px)でも良い
+    }
 
     &::before {
       content: '';
@@ -29,9 +38,13 @@ $cBlack: black;
       position: absolute;
       top: 0;
       left: 0;
-      transform: translateX(-100%);
-      transition: transform 0.3s;
-      z-index: -1;
+      transform: rotateX(
+        90deg
+      ); // ただのrotateはrotateZを同じ 外側から降りてくるようにしたいので 90degにする 内側から降りてくるようにする場合は-90degにする
+      transition: all 3s; // 0.3秒で徐々に遷移する
+      transform-origin: top center; // Y軸のtopを支点として回転させたいため topからcenterへ移動する
+      // z-index: -1;
+      opacity: 0; // 少し黒いのが見えるので完全に透明にする
     }
 
     &:hover {
@@ -39,6 +52,7 @@ $cBlack: black;
 
       &::before {
         transform: none;
+        opacity: 1; // hoverしたタイミングで透明を解除する
       }
     }
   }

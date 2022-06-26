@@ -432,3 +432,92 @@ $cBlack: black;
 ## 27. タイミングファンクション(a.k.a easing-function)でアニメーションをオサレにする
 
 `transition: transform 0.3s ease;` easeのとこを変えてみる(検証ツール) overflow: hidden;をチェック外しておく<br>
+
+## 28 [発展] 3Dアニメーションでより豊かな表現方法を身につけよう
+
++ `02_HTMLとCSSを極める（トランジション編）/080_発展_3Dアニメーション/start/style.scss`を編集<br>
+
+```scss:style.scss
+$cWhite: white;
+$cBlack: black;
+
+#container {
+  text-align: center;
+}
+
+.btn {
+  background-color: $cWhite;
+  color: $cBlack;
+  border: 1px solid $cBlack;
+  padding: 10px 40px;
+  margin: 50px 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &.cover-3d {
+    position: relative;
+    // overflow: hidden; いらなくなる
+    z-index: 1;
+    transform-style: preserve-3d; // Z軸が追加される preserve-3dは子要素に適用される この場合は &::beforeの擬似要素に3dが適用されることになる
+    perspective: 300px; // 奥行きを示す
+
+    & span {
+      display: inline-block;
+      transform: translateZ(
+        20px
+      ); // inline要素には適用できない span要素はinline要素 tranlate3d(20px)でも良い
+    }
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background-color: $cBlack;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotateX(
+        90deg
+      ); // ただのrotateはrotateZを同じ 外側から降りてくるようにしたいので 90degにする 内側から降りてくるようにする場合は-90degにする
+      transition: all 3s; // 0.3秒で徐々に遷移する
+      transform-origin: top center; // Y軸のtopを支点として回転させたいため topからcenterへ移動する
+      // z-index: -1;
+      opacity: 0; // 少し黒いのが見えるので完全に透明にする
+    }
+
+    &:hover {
+      color: $cWhite;
+
+      &::before {
+        transform: none;
+        opacity: 1; // hoverしたタイミングで透明を解除する
+      }
+    }
+  }
+}
+```
+
++ `02_HTMLとCSSを極める（トランジション編）/080_発展_3Dアニメーション/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="container">
+        <button class="btn cover-3d"><span>Button</span></button>
+    </div>
+</body>
+
+</html>
+```
