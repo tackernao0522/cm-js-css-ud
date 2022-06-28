@@ -6,15 +6,23 @@
 
 .child {
   background-color: orange;
-  width: 100px;
-  height: 100px;
+  // width: 100px; // flexで指定している時、コメントアウトしてみる
+  // height: 100px; // flexで指定している時、コメントアウトしてみる
   font-weight: 600;
+  flex-grow: 1; // 各要素が親要素を満たすように横幅を調整されて配置される
+}
+.child.v1 {
+  flex-basis: 300px; // 基本的な大きさを指定するプロパティ この場合はこの要素が300px分先に確保されることになる
 }
 .child.v2 {
+  // width: 200px; // flexで指定している時、コメントアウトしてみる
+  // height: 200px; // flexで指定している時、コメントアウトしてみる
   background-color: palevioletred;
+  flex-grow: 2; // 1:2:1の幅になる
 }
 .child.v3 {
   background-color: rebeccapurple;
+  flex-grow: 3; // 1:2:3 の幅になる
 }
 
 /**
@@ -22,35 +30,40 @@
  */
 /* インライン要素に対して */
 // .parent {
-//   text-align: left;
+//   text-align: right;
+//   letter-spacing: -6px; // -6px以下の指定にすればスペースがなくなる(inlineの文字間隔)
 // }
 // .child {
-//     display: inline-block;
+//     display: inline-block; // inline-blockとするとinline要素に適用する text-alignが有効になる(親要素に設定)
 // }
 
 /* ブロック要素を中央揃え */
 // .parent {
 // }
 // .child {
-//     margin: 0 auto;
+//     // width: 100px; // 左右に均等に振り分けることができる 100pxはデフォルトで書かなくても良い
+//     margin: 0 auto; // block要素の中央揃え(block or inline-blockに適用可能 親要素のこの場合 .parentにwidthが指定されてなければならない)
 // }
 
 /**
  * 上下方向のレイアウト
  */
+
+// このやり方は全ての子要素が重なって配置されることになる
 // .parent {
 //   position: relative;
 // }
 // .child {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
+//   position: absolute; // 親要素(.parent)を基準
+//   top: 50%; // (親要素基準から)
+//   left: 50%; // (親要素基準から)
+//   transform: translate(-50%, -50%); // 自要素から x(左に50%) y(上に50%)プラスにすると逆に動く
 // }
 
-// .parent {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   align-items: flex-end;
-// }
+// 全ての子要素が重ならない方法
+.parent {
+  display: flex; // これだけ指定すると横並びになる
+  // flex-direction: row; // column (縦並びにする) これを指定すると justify-content とalign-itemsを指定した場合は通常の逆の配置になる row(デフォルトの設定になるので他の指定は普通になる)
+  justify-content: center; // flex-end とすると 横並びで 右へ表示される centerは中央 space-around(均等に間が開く) space-between(両端のスペースが取り除かれて 残りの間隔が均等に配置される)
+  // align-items: flex-end; // 縦方向を操作する時に使う center(中央に配置) flex-start(一番上中央に配置) flex-end(一番下中央に配置)
+}

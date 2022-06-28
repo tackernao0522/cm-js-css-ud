@@ -63,4 +63,103 @@ $cBlack: black;
 }
 ```
 
-## 30. HTML要素を思った通りに配置するレイアウト方法まとめ
+## 30. HTML要素を思った配置するレイアウト方法まとめ
+
++ `02_HTMLとCSSを極める（トランジション編）/100_要素を思った配置する方法/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child v1">child</div>
+        <div class="child v2">child 2</div>
+        <div class="child v3">child 3</div>
+    </div>
+</body>
+
+</html>
+```
+
++ `02_HTMLとCSSを極める（トランジション編）/100_要素を思った配置する方法/start/style.scss`を編集<br>
+
+```scss:style.scss
+.parent {
+  background-color: rgb(81, 218, 218);
+  height: 600px;
+  width: 100%;
+}
+
+.child {
+  background-color: orange;
+  // width: 100px; // flexで指定している時、コメントアウトしてみる
+  // height: 100px; // flexで指定している時、コメントアウトしてみる
+  font-weight: 600;
+  flex-grow: 1; // 各要素が親要素を満たすように横幅を調整されて配置される
+}
+.child.v1 {
+  flex-basis: 300px; // 基本的な大きさを指定するプロパティ この場合はこの要素が300px分先に確保されることになる
+}
+.child.v2 {
+  // width: 200px; // flexで指定している時、コメントアウトしてみる
+  // height: 200px; // flexで指定している時、コメントアウトしてみる
+  background-color: palevioletred;
+  flex-grow: 2; // 1:2:1の幅になる
+}
+.child.v3 {
+  background-color: rebeccapurple;
+  flex-grow: 3; // 1:2:3 の幅になる
+}
+
+/**
+ * 横方向のレイアウト
+ */
+/* インライン要素に対して */
+// .parent {
+//   text-align: right;
+//   letter-spacing: -6px; // -6px以下の指定にすればスペースがなくなる(inlineの文字間隔)
+// }
+// .child {
+//     display: inline-block; // inline-blockとするとinline要素に適用する text-alignが有効になる(親要素に設定)
+// }
+
+/* ブロック要素を中央揃え */
+// .parent {
+// }
+// .child {
+//     // width: 100px; // 左右に均等に振り分けることができる 100pxはデフォルトで書かなくても良い
+//     margin: 0 auto; // block要素の中央揃え(block or inline-blockに適用可能 親要素のこの場合 .parentにwidthが指定されてなければならない)
+// }
+
+/**
+ * 上下方向のレイアウト
+ */
+
+// このやり方は全ての子要素が重なって配置されることになる
+// .parent {
+//   position: relative;
+// }
+// .child {
+//   position: absolute; // 親要素(.parent)を基準
+//   top: 50%; // (親要素基準から)
+//   left: 50%; // (親要素基準から)
+//   transform: translate(-50%, -50%); // 自要素から x(左に50%) y(上に50%)プラスにすると逆に動く
+// }
+
+// 全ての子要素が重ならない方法
+.parent {
+  display: flex; // これだけ指定すると横並びになる
+  // flex-direction: row; // column (縦並びにする) これを指定すると justify-content とalign-itemsを指定した場合は通常の逆の配置になる row(デフォルトの設定になるので他の指定は普通になる)
+  justify-content: center; // flex-end とすると 横並びで 右へ表示される centerは中央 space-around(均等に間が開く) space-between(両端のスペースが取り除かれて 残りの間隔が均等に配置される)
+  // align-items: flex-end; // 縦方向を操作する時に使う center(中央に配置) flex-start(一番上中央に配置) flex-end(一番下中央に配置)
+}
+```
