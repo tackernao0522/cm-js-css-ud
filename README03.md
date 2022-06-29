@@ -163,3 +163,78 @@ $cBlack: black;
   // align-items: flex-end; // 縦方向を操作する時に使う center(中央に配置) flex-start(一番上中央に配置) flex-end(一番下中央に配置)
 }
 ```
+
+# セクション5: CSSを極めよう(Animation編)
+
+## 34 [簡単！]アニメーションを使ってローダーを作ってみましょう！
+
++ `03_HTMLとCSSを極める（アニメーション編）/010_ローダーを作ってみよう/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="loader.css">
+</head>
+
+<body>
+  <div class="three-dot-spinner">
+    <div class="bounce1"></div>
+    <div class="bounce2"></div>
+    <div class="bounce3"></div>
+  </div>
+</body>
+
+</html>
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/010_ローダーを作ってみよう/start/loader.scss`を作成<br>
+
++ `03_HTMLとCSSを極める（アニメーション編）/010_ローダーを作ってみよう/start/loader.scss`を編集<br>
+
+```scss:loader.scss
+$cBlack: black;
+
+.three-dot-spinner {
+  text-align: center;
+
+  & div {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: $cBlack;
+    border-radius: 50%;
+    animation: sk-bouncedelay 1.4s infinite;
+  }
+
+  & .bounce1 {
+    animation-delay: -0.32s;
+  }
+
+  & .bounce2 {
+    animation-delay: -0.16s;
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0% {
+    // opacity: 0;
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(0);
+  }
+  100% {
+    // opacity: 1;
+    transform: scale(0);
+  }
+}
+```
