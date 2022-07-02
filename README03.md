@@ -238,3 +238,73 @@ $cBlack: black;
   }
 }
 ```
+## 35. [文法] Animationとkeyframsの文法を学ぼう
+
++ `03_HTMLとCSSを極める（アニメーション編）/020_アニメーション とキーフレーム/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="loader.css">
+</head>
+
+<body>
+    <div class="rect">
+    </div>
+    <div><button onclick="document.querySelector('.rect').classList.toggle('paused')">Pause</button></div>
+</body>
+
+</html>
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/020_アニメーション とキーフレーム/start/loader.scss`を編集<br>
+
+```scss:loader.scss
+$cBlack: black;
+
+body {
+  text-align: center;
+}
+
+.rect {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-color: $cBlack;
+  animation: sk-bouncedelay 1.4s;
+  animation-timing-function: ease; //
+  // animation-delay: 3s; // 画面が更新されてから3秒後にアニメーションが開始される
+  // animation-iteration-count: infinite; // 繰り返し数を指定することができる
+  // animation-direction: alternate-reverse; // 初期値としてはnormalが設定してある状態である。 reverseにするとキーフレームのtrnsformが100%の状態から0%の状態になる。alternateは 0->100->0->100と折り返す
+  // alternate-reverse: 100%から始まって折り返す
+  // animation-fill-mode: forwards; // forwardes: アニメーションが終了した時点のCSSの適用が残る both: 開始時点と終了時点の両方を残す場合
+  // transform: scale(0); // animation-fill-mode: forwards;を設定すると この場合はtransform: scale(1)が終了時点になるのでこれは効かない
+  // animation-play-state: paused; // アニメーションを途中で止める場合(最初からこのように付与しておくとアニメーションが始まらなくなってしまう)
+}
+.paused {
+  animation-play-state: paused;
+}
+
+// 0% は fromとして定義できて 100% は to として定義できる
+@keyframes sk-bouncedelay {
+  from {
+    transform: scale(0);
+    background-color: $cBlack;
+  }
+
+  // 50% {
+  //   transform: scale(2);
+  // }
+
+  to {
+    transform: scale(1);
+    background-color: green;
+  }
+}
+```
