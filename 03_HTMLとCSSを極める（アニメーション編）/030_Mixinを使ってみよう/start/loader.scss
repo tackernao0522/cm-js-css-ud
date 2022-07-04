@@ -4,12 +4,34 @@ body {
   text-align: center;
 }
 
+// アニメーションプロパティを初期化するプロパティを用意する @mixinはsassの中で使える $duration: 1s =  default値を指定できる
+@mixin animation(
+  $name,
+  $duration: 1s,
+  $timing-function: ease,
+  $delay: 0s,
+  $iteration-count: 1,
+  $direction: normal,
+  $fill-mode: forwards
+) {
+  animation: {
+    name: $name;
+    duration: $duration;
+    timing-function: $timing-function;
+    delay: $delay;
+    iteration-count: $iteration-count;
+    direction: $direction;
+    fill-mode: $fill-mode;
+  }
+}
+
 .rect {
   display: inline-block;
   width: 100px;
   height: 100px;
   background-color: $cBlack;
-  animation: sk-bouncedelay 1.4s;
+  @include animation($name: sk-bouncedelay); // @mixinの関数呼び出し
+  // animation: sk-bouncedelay 1.4s;
   // animation-timing-function: ease;
   // animation-delay: 3s;
   // animation-iteration-count: infinite;

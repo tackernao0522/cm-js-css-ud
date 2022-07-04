@@ -308,3 +308,93 @@ body {
   }
 }
 ```
+
+## 36. [Sass] @Mixinを使った一歩上のSassコーディング！！
+
++ `03_HTMLとCSSを極める（アニメーション編）/030_Mixinを使ってみよう/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="loader.css">
+</head>
+
+<body>
+    <div class="rect">
+    </div>
+    <div>
+        <button onclick="document.querySelector('.rect').classList.toggle('paused');">
+            Puase
+        </button>
+    </div>
+</body>
+
+</html>
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/030_Mixinを使ってみよう/start/loader.scss`を編集<br>
+
+```scss:loader.scss
+$cBlack: black;
+
+body {
+  text-align: center;
+}
+
+// アニメーションプロパティを初期化するプロパティを用意する @mixinはsassの中で使える $duration: 1s =  default値を指定できる
+@mixin animation(
+  $name,
+  $duration: 1s,
+  $timing-function: ease,
+  $delay: 0s,
+  $iteration-count: 1,
+  $direction: normal,
+  $fill-mode: forwards
+) {
+  animation: {
+    name: $name;
+    duration: $duration;
+    timing-function: $timing-function;
+    delay: $delay;
+    iteration-count: $iteration-count;
+    direction: $direction;
+    fill-mode: $fill-mode;
+  }
+}
+
+.rect {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-color: $cBlack;
+  @include animation($name: sk-bouncedelay); // @mixinの関数呼び出し
+  // animation: sk-bouncedelay 1.4s;
+  // animation-timing-function: ease;
+  // animation-delay: 3s;
+  // animation-iteration-count: infinite;
+  // animation-direction: alternate-reverse;
+  // animation-fill-mode: both;
+}
+
+.paused {
+  animation-play-state: paused;
+}
+
+@keyframes sk-bouncedelay {
+  from {
+    transform: scale(0);
+    background-color: black;
+  }
+
+  to {
+    transform: scale(1);
+    background-color: green;
+  }
+}
+```
