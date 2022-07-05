@@ -398,3 +398,249 @@ body {
   }
 }
 ```
+
+## 37. [Tips] 擬似セレクターを使ってみよう！nth-childのハマりやすい罠とは！？
+
++ `03_HTMLとCSSを極める（アニメーション編）/040_擬似セレクターを学ぼう/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <h2>ホバー(:hover)、フォーカス(:focus)、アクティブ(:active)<br>
+        ビジット(:visited)について</h2>
+    <a href="#1">Item 1</a>
+    <a href="#2">Item 2</a>
+    <a href="#3">Item 3</a>
+    <a href="#4">Item 4</a> -->
+    <h2>:nth-child、:nth-of-typeについて</h2>
+    <div>
+        <span>Item 1</span>
+        <span>Item 2</span>
+        <span class="cls">Item 3</span>
+        <span>Item 4</span>
+        <span>Item 5</span>
+    </div>
+    <!-- <div>
+        <strong>Not Span</strong>
+        <span>Item 1</span>
+        <span>Item 2</span>
+        <span>Item 3</span>
+        <span>Item 4</span>
+        <span>Item 5</span>
+    </div> -->
+</body>
+
+</html>
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/040_擬似セレクターを学ぼう/start/style.scss`を編集<br>
+
+```scss:style.scss
+a {
+  color: orange;
+
+  &:visited {
+    // 何も記載しないvisitedは紫である。
+    color: blue;
+  }
+
+  &:hover {
+    color: red;
+  }
+
+  &:focus {
+    // 最後にクリックされた要素につく
+    color: green;
+  }
+
+  &:active {
+    // クリックしたタイミングでpurpleになり、クリックを離すとfocusが残った状態になるのでgreenに変わる
+    color: purple;
+  }
+}
+
+div {
+  & span {
+    color: olive;
+
+    &:nth-child(even) { // 引数に(2n) = 2の倍数番目が変わる (2n + 1) = 奇数番目になる (odd) = 奇数になる (even) = 偶数
+      color: purple; // 2番目のItem 2が紫になる
+    }
+  }
+}
+```
+
+### nth-of-type
+
++ `03_HTMLとCSSを極める（アニメーション編）/040_擬似セレクターを学ぼう/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <h2>ホバー(:hover)、フォーカス(:focus)、アクティブ(:active)<br>
+        ビジット(:visited)について</h2>
+    <a href="#1">Item 1</a>
+    <a href="#2">Item 2</a>
+    <a href="#3">Item 3</a>
+    <a href="#4">Item 4</a> -->
+    <h2>:nth-child、:nth-of-typeについて</h2>
+    <div>
+        <span>Item 1</span>
+        <span>Item 2</span>
+        <span class="cls">Item 3</span>
+        <span>Item 4</span>
+        <span>Item 5</span>
+    </div>
+    <div>
+        <strong>Not Span</strong>
+        <span>Item 1</span>
+        <span>Item 2</span>
+        <span>Item 3</span>
+        <span>Item 4</span>
+        <span>Item 5</span>
+    </div>
+</body>
+
+</html>
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/040_擬似セレクターを学ぼう/start/style.scss`を編集<br>
+
+```scss:style.scss
+a {
+  color: orange;
+
+  &:visited {
+    // 何も記載しないvisitedは紫である。
+    color: blue;
+  }
+
+  &:hover {
+    color: red;
+  }
+
+  &:focus {
+    // 最後にクリックされた要素につく
+    color: green;
+  }
+
+  &:active {
+    // クリックしたタイミングでpurpleになり、クリックを離すとfocusが残った状態になるのでgreenに変わる
+    color: purple;
+  }
+}
+
+// <strong>タグというspan要素以外が入っていると確認してみればわかるがずれる nth-of-typeにすると正常になる
+div {
+  & span {
+    color: olive;
+
+    &:nth-of-type(1) {
+      color: purple;
+    }
+    &:nth-of-type(2) {
+      color: green;
+    }
+    &:nth-of-type(3) {
+      color: blue;
+    }
+  }
+}
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/040_擬似セレクターを学ぼう/start/style.scss`を編集<br>
+
+```scss:style.css
+a {
+  color: orange;
+
+  &:visited {
+    // 何も記載しないvisitedは紫である。
+    color: blue;
+  }
+
+  &:hover {
+    color: red;
+  }
+
+  &:focus {
+    // 最後にクリックされた要素につく
+    color: green;
+  }
+
+  &:active {
+    // クリックしたタイミングでpurpleになり、クリックを離すとfocusが残った状態になるのでgreenに変わる
+    color: purple;
+  }
+}
+
+// <strong>タグというspan要素以外が入っていると確認してみればわかるがずれる nth-of-typeにすると正常になる
+div {
+  & span {
+    color: olive;
+
+    &:last-of-type { // first-child = 1番目　last-child = 要素の最後 first-of-type と last-of-typeも指定できる
+      color: purple;
+    }
+  }
+}
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/040_擬似セレクターを学ぼう/start/style.scss`を編集<br>
+
+```scss:style.scss
+a {
+  color: orange;
+
+  &:visited {
+    // 何も記載しないvisitedは紫である。
+    color: blue;
+  }
+
+  &:hover {
+    color: red;
+  }
+
+  &:focus {
+    // 最後にクリックされた要素につく
+    color: green;
+  }
+
+  &:active {
+    // クリックしたタイミングでpurpleになり、クリックを離すとfocusが残った状態になるのでgreenに変わる
+    color: purple;
+  }
+}
+
+// <strong>タグというspan要素以外が入っていると確認してみればわかるがずれる nth-of-typeにすると正常になる
+div {
+  & span {
+    color: olive;
+
+    &:not(.cls) { // .clsじゃない要素に適用
+      // ()の中に入れた条件に一致しないものという意味になる
+      color: purple;
+    }
+  }
+}
+```
