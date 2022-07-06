@@ -10,14 +10,14 @@ $cBlack: black;
     background-color: $cBlack;
     border-radius: 50%;
     animation: sk-bouncedelay 1.4s infinite;
-  }
 
-  & .bounce1 {
-    animation-delay: -0.32s;
-  }
-
-  & .bounce2 {
-    animation-delay: -0.16s;
+    // througはその数値も含むが toの場合はその数値は含まない
+    @for $i from 1 through 2 {
+      &:nth-child(#{$i}) {
+        animation-delay: -0.32s / $i; // sが付いてても四則演算ができる
+        // background-image: url('/images/image#{#$i}.png');
+      }
+    }
   }
 }
 

@@ -644,3 +644,118 @@ div {
   }
 }
 ```
+
+## 38. [Sass] @for文で一歩上のSassコーディング！！
+
++ `03_HTMLとCSSを極める（アニメーション編）/050_Sassでfor文を使ってみよう/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="loader.css">
+</head>
+
+<body>
+    <div class="copyright">
+        <a target="_blank" href="https://github.com/tobiasahlin/SpinKit">MIT Lisence: SpinKit - @tobiasahlin</a>
+    </div>
+    <div class="three-dot-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+
+</html>
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/050_Sassでfor文を使ってみよう/start/loader.scss`を編集<br>
+
+```scss:loader.scss
+$cBlack: black;
+
+.three-dot-spinner {
+  text-align: center;
+
+  & div {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: $cBlack;
+    border-radius: 50%;
+    animation: sk-bouncedelay 1.4s infinite;
+
+    &:nth-child(1) {
+      animation-delay: -0.32s;
+    }
+    &:nth-child(2) {
+      animation-delay: -0.16s;
+    }
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+```
+
+### for文で上記を書いてみる
+
++ `03_HTMLとCSSを極める（アニメーション編）/050_Sassでfor文を使ってみよう/start/loader.scss`を編集<br>
+
+```scss:loader.scss
+$cBlack: black;
+
+.three-dot-spinner {
+  text-align: center;
+
+  & div {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: $cBlack;
+    border-radius: 50%;
+    animation: sk-bouncedelay 1.4s infinite;
+
+    // througはその数値も含むが toの場合はその数値は含まない
+    @for $i from 1 through 2 {
+      &:nth-child(#{$i}) {
+        animation-delay: -0.32s / $i; // sが付いてても四則演算ができる
+        // background-image: url('/images/image#{#$i}.png');
+      }
+    }
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+  80% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+```
