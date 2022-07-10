@@ -231,3 +231,128 @@
   }
 }
 ```
+
+## 43. [実践] よく巷で見かけるオサレなやつ！メニューアイコンを作ってみよう！！
+
++ `03_HTMLとCSSを極める（アニメーション編）/070_演習_メニューアイコンを作ってみよう/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <button class="mobile-menu-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</body>
+
+</html>
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/070_演習_メニューアイコンを作ってみよう/start/style.scss`を編集<br>
+
+```scss:style.scss
+$cBlack: black;
+
+.mobile-menu-icon {
+  background-color: transparent;
+  border: none;
+
+  & > span {
+    background-color: $cBlack;
+    width: 35px;
+    height: 2px;
+    display: block;
+    margin-bottom: 9px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/070_演習_メニューアイコンを作ってみよう/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- 編集 -->
+  <button class="mobile-menu-icon" onclick="document.querySelector('body').classList.toggle('menu-open');">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</body>
+
+</html>
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/070_演習_メニューアイコンを作ってみよう/start/style.scss`を編集<br>
+
+```scss:style.scss
+$cBlack: black;
+$cWhite: white;
+
+.mobile-menu-icon {
+  background-color: transparent;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+
+  & > span {
+    background-color: $cBlack;
+    width: 35px;
+    height: 2px;
+    display: block;
+    margin-bottom: 9px;
+    transition: transform 0.7s; // ここをコメントアウトしてからrotateの調整をする
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.menu-open {
+  background-color: $cBlack;
+
+  .mobile-menu-icon {
+    & > span {
+      background-color: $cWhite;
+
+      &:nth-child(1) {
+        transition-delay: 70ms; // より複雑な動き
+        transform: translateY(11px) rotate(135deg);
+      }
+      &:nth-child(2) {
+        transform: translateX(-18px) scaleX(0);
+      }
+      &:nth-child(3) {
+        transition-delay: 140ms; // より複雑な動き
+        transform: translateY(-11px) rotate(-135deg);
+      }
+    }
+  }
+}
+```

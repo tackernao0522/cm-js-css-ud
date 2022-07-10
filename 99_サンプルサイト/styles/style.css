@@ -953,19 +953,16 @@ main {
     flex-direction: row;
     flex-wrap: wrap;
   }
-
   .houses__item {
     flex-basis: 50%;
     margin-bottom: 60px;
   }
-
   .popular__container {
     justify-content: space-between;
   }
   .popular__item {
     flex-basis: 47%;
   }
-
   .travel__inner {
     padding: 50px;
   }
@@ -976,7 +973,6 @@ main {
     display: flex;
     align-items: flex-end;
   }
-
   .footer .logo {
     justify-content: flex-start;
   }
@@ -994,34 +990,27 @@ main {
   .font-sm, .sub-title {
     font-size: 16px;
   }
-
   .font-md, .popular__title {
     font-size: 19px;
   }
-
   .font-lr, .houses__title {
     font-size: 23px;
   }
-
   .font-lg, .main-title {
     font-size: 36px;
   }
-
   .mb-lg, .travel, .houses, .popular__btn {
     margin-bottom: 150px !important;
   }
-
   .pb-lg, .hero {
     padding-bottom: 150px !important;
   }
-
   .popular__item {
     flex-basis: 25%;
   }
   .popular__img {
     height: 335px;
   }
-
   .travel__img {
     height: 400px;
   }
@@ -1031,19 +1020,15 @@ main {
   .travel__title::before {
     display: block;
   }
-
   .footer__li {
     justify-content: flex-start;
   }
-
   .header__nav {
     display: block;
   }
-
   .mobile-menu__btn {
     display: none;
   }
-
   .swiper-slide {
     box-shadow: 0 8px 40px -10px rgba(0, 0, 0, 0.8);
   }
@@ -1057,11 +1042,9 @@ main {
   .travel__inner {
     padding: 50px 150px;
   }
-
   .popular__item {
     flex-basis: 23%;
   }
-
   .side {
     display: block;
   }
