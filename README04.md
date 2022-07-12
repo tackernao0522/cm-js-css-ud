@@ -356,3 +356,263 @@ $cWhite: white;
   }
 }
 ```
+
+## 44. [実践] オサレな文字列のアニメーションを作ってみよう!!
+
++ `03_HTMLとCSSを極める（アニメーション編）/080_文字アニメーション/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="animate-title">
+      <span class="char">A</span>
+      <span class="char">N</span>
+      <span class="char">I</span>
+      <span class="char">M</span>
+      <span class="char">A</span>
+      <span class="char">T</span>
+      <span class="char">I</span>
+      <span class="char">O</span>
+      <span class="char">N</span>
+    </div>
+    <button onclick="document.querySelector('.animate-title').classList.toggle('inview');">Animation</button>
+  </div>
+</body>
+
+</html>
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/080_文字アニメーション/start/_mixin.scss`を編集<br>
+
+```scss:_mixin.scss
+@mixin animation(
+  $name,
+  $duration: 1s,
+  $timing-function: ease,
+  $delay: 0s,
+  $iteration-count: 1,
+  $direction: normal,
+  $fill-mode: forwards
+) {
+  animation: {
+    name: $name;
+    duration: $duration;
+    timing-function: $timing-function;
+    delay: $delay;
+    iteration-count: $iteration-count;
+    direction: $direction;
+    fill-mode: $fill-mode;
+  }
+}
+```
+
+
++ `03_HTMLとCSSを極める（アニメーション編）/080_文字アニメーション/start/styles.scss`を編集<br>
+
+```scss:styles.scss
+@import 'mixin';
+
+body {
+  margin: 0; // リセット
+}
+
+#container {
+  position: relative;
+  height: 100vh; // 100vhとすると画面いっぱいの縦幅になる
+  // width: 100vw; // 横幅いっぱいに広がるがブロック要素は基本的にいっぱいに人がるので必要なし。inline要素の場合必要あれば記述
+  background-color: teal;
+}
+
+.animate-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+```
+
++ `03_HTMLとCSSを極める（アニメーション編）/080_文字アニメーション/start/styles.scss`を編集<br>
+
+```scss:styles.scss
+@import 'mixin';
+
+body {
+  margin: 0; // リセット
+}
+
+#container {
+  position: relative;
+  height: 100vh; // 100vhとすると画面いっぱいの縦幅になる
+  // width: 100vw; // 横幅いっぱいに広がるがブロック要素は基本的にいっぱいに人がるので必要なし。inline要素の場合必要あれば記述
+  background-color: teal;
+}
+
+.animate-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0; // デフォルト時には文字は消えている
+
+  &.inview {
+    opacity: 1; // class inview付与時には文字列が見える
+
+    & .char {
+      display: inline-block; // これを指定してないとtranslateが効かないので上から降りてこない(inline要素以外を適用する)
+      // & .charで子要素の指定となる
+      @include animation(
+        $name: kf-animate-chars,
+        $duration: 0.5s,
+        $timing-function: cubic-bezier(0.39, 1.57, 0.58, 1),
+        $fill-mode: both
+      );
+
+      @for $i from 1 through 9 {
+        &:nth-child(#{$i}) {
+          animation-delay: $i * 0.04s;
+        }
+      }
+    }
+  }
+}
+
+@keyframes kf-animate-chars {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
+
+※ Google Fontsでフォントを指定する<br>
+
+Google Fonts: https://fonts.google.com/ <br>
+
+使いたいフォントのカードをクリックして詳細画面に移る<br>
+
++ midium 500 の `select this style`をクリックしてみる<br>
+
++ 右上のアイコンの赤いポッチの部分をクリックする<br>
+
++ Linkをコピーする<br>
+
++ `03_HTMLとCSSを極める（アニメーション編）/080_文字アニメーション/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Linkを貼り付け -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="container">
+    <div class="animate-title">
+      <span class="char">A</span>
+      <span class="char">N</span>
+      <span class="char">I</span>
+      <span class="char">M</span>
+      <span class="char">A</span>
+      <span class="char">T</span>
+      <span class="char">I</span>
+      <span class="char">O</span>
+      <span class="char">N</span>
+    </div>
+    <button onclick="document.querySelector('.animate-title').classList.toggle('inview');">Animation</button>
+  </div>
+</body>
+
+</html>
+```
+
+CSS rules to specify families をコピーする<br>
+
++ `03_HTMLとCSSを極める（アニメーション編）/080_文字アニメーション/start/style.scss`を編集<br>
+
+```scss:style.scss
+@import 'mixin';
+
+html {
+  // CSS rules to specify familiesを貼り付け
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0; // リセット
+}
+
+#container {
+  position: relative;
+  height: 100vh; // 100vhとすると画面いっぱいの縦幅になる
+  // width: 100vw; // 横幅いっぱいに広がるがブロック要素は基本的にいっぱいに人がるので必要なし。inline要素の場合必要あれば記述
+  background-color: teal;
+}
+
+.animate-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0; // デフォルト時には文字は消えている
+  font-size: 2em; // 追加
+
+  &.inview {
+    opacity: 1; // class inview付与時には文字列が見える
+
+    & .char {
+      display: inline-block; // これを指定してないとtranslateが効かないので上から降りてこない(inline要素以外を適用する)
+      // & .charで子要素の指定となる
+      @include animation(
+        $name: kf-animate-chars,
+        $duration: 0.5s,
+        $timing-function: cubic-bezier(0.39, 1.57, 0.58, 1),
+        $fill-mode: both
+      );
+
+      @for $i from 1 through 9 {
+        &:nth-child(#{$i}) {
+          animation-delay: $i * 0.04s;
+        }
+      }
+    }
+  }
+}
+
+@keyframes kf-animate-chars {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
