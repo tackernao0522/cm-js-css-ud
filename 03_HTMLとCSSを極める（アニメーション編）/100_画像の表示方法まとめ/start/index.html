@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- <img src="images/400x250.png" srcset="
+        images/1100x550.png 1100w,
+        images/800x250.png   800w,
+        images/400x250.png
+      " /> -->
+  <div class="bg-img"></div>
+  <!-- <picture> -->
+    <!-- 画面が960px以上の時に表示する -->
+    <!-- <source media="(min-width:960px)" srcset="images/1100x550.png" /> -->
+    <!-- 画面が480px以上の時に表示する -->
+    <!-- <source media="(min-width:480px)" srcset="images/800x250.png" /> -->
+    <!-- それ以外が表示される -->
+    <!-- <img src="images/400x250.png" alt="text" /> -->
+  <!-- </picture> -->
+  <style>
+    /* img {
+      height: 500px;
+      width: 300px;
+      object-fit: cover;
+    } */
+    /* heightを指定しないと表示されない */
+    .bg-img {
+      background-color: black;
+      height: 250px;
+      /* width: 300px; */
+      background-image: url(images/400x250.png);
+      background-repeat: no-repeat; /* defaultではrepeatになっている */
+      background-size: cover;
+      background-position: center;
+    }
+    /* 600px以上の時に表示される メディアクエリ */
+    @media screen and (min-width: 600px) {
+      .bg-img {
+        background-image: url(images/800x250.png);
+
+      }
+    }
+  </style>
+</body>
+
+</html>
