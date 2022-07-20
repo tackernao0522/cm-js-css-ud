@@ -1,3 +1,12 @@
+# 50. [Tips] アニメーションに最適なプロパティー
+
+[参考](https://blog.leap-in.com/lets-learn-how-to-browser-works/) <br>
+
++ `03_HTMLとCSSを極める（アニメーション編）/110_スライドアニメーション/start/style.scss`を編集<br>
+
++ パフォーマンスを良くするための書き方<br>
+
+```scss:style.scss
 @import 'mixin';
 
 img {
@@ -18,11 +27,11 @@ img {
     right: 0;
     bottom: 0;
     background-color: #eaebe6;
-    opacity: 0;
+    opacity: 0; // 追加
   }
   &.inview {
     &::after {
-      opacity: 1;
+      opacity: 1; // 追加
       @include animation(
         $name: kf-cover-slide,
         $duration: 1.6s,
@@ -143,3 +152,4 @@ img {
     padding-top: 50%;
   }
 }
+```
