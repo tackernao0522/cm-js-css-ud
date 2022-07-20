@@ -102,3 +102,22 @@ img {
     background-color: rgba(0, 0, 0, 0.4);
   }
 }
+
+.bg-img-zoom {
+  background-image: url(images/image-1.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  @extend .img-zoom; // .img-zoomのところの値を取り込むことができる
+}
+
+.img-bg50 {
+  position: relative;
+
+  &::before {
+    display: block;
+    content: '';
+    padding-top: 50%;
+  }
+}
