@@ -83,3 +83,28 @@ console.log(typeof variable) // 型の種類の確認
 // 静的型付け言語
 // int num = 12
 ```
+
+## 54. [文法編] 関数の定義と使い方！
+
++ 04_JavaScriptの基礎を固める/025_関数定義について/start/main.js`を編集<br>
+
+```js:main.js
+// 無名関数 (関数の実行文より前に持ってくる)
+// const hello = function(name, age) {
+//     // let name = 'Takaki Nakamura'
+//     console.log('hello ' + name + age)
+//     return name + age
+// }
+
+
+hello('Takaki Nakamura', 10)
+const returnVal = hello('Naomi Etsui', 20)
+console.log(returnVal)
+
+// 普通の関数 (関数の実行文の後に記述してもエラーにならない)
+function hello(name, age) {
+  // let name = 'Takaki Nakamura'
+  console.log('hello ' + name + age)
+  return name + age
+}
+```
