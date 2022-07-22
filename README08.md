@@ -161,7 +161,7 @@ const person = {
   age: 32,
   gender: 'male',
   interests: {
-    sports: 'soccer',
+      sports: 'soccer',
     music: 'piano'
   },
   // メソッドも定義できる
@@ -185,4 +185,22 @@ person[ageKey] = 53;
 console.log(person[ageKey]); // 53
 person.getFullName();
 console.log(person.getFullName()); // TakakiNakamura
+```
+
+## 58. [文法編] ループの記述方法基礎
+
++ `04_JavaScriptの基礎を固める/060_ループの記述方法/start/main.js`を編集<br>
+
+```js:main.js
+const arry = [1, 2, 3, 4, 5];
+
+// for (let i = 0; i < 5; i = i + 1) {
+//   // console.log(i); // 0 ~ 4が出力される
+//   console.log(arry[i]) // arryの1〜5が出力される
+// }
+
+for (let i = 0; i < arry.length; i++) {
+  console.log(i)
+  // console.log(arry[i])
+}
 ```
