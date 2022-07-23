@@ -204,3 +204,31 @@ for (let i = 0; i < arry.length; i++) {
   // console.log(arry[i])
 }
 ```
+
+## 59. [文法編] ループの記述方法（for in と for of)
+
++ `04_JavaScriptの基礎を固める/061_ループの記述方法（for_inとfor_of）/start/main.js`を編集<br>
+
+```js:main.js
+const arry = [1, 2, 3, 4, 5, 6];
+
+// for (let i = 0; i < arry.length; i++) {
+//     console.log(i);
+// }
+
+// for (let i in arry) {
+//     // console.log(i) // 0 1 2 3 4 5
+//     // console.log(arry[i]) // 1 2 3 4 5 6
+//     console.log(i, arry[i])
+// }
+
+// for (let i in arry) {
+//     let v = arry[i]
+//     console.log(v) // 1 2 3 4 5 6
+// }
+
+for (let v of arry) {
+    console.log(v) // 1 2 3 4 5 6
+
+}
+```
