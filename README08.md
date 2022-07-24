@@ -360,3 +360,40 @@ if (num3) {
   console.log('This is false')
 }
 ```
+
+## 62. [文法編] アロー関数を使って省略記法をマスターしよう！
+
++ `04_JavaScriptの基礎を固める/070_関数定義とアロー関数/start/main.js`を編集<br>
+
+```js:main.js
+// 普通の関数 (呼び出し元より下でも読み込まれる)
+// function hello(name = 'Kaira') {
+//   console.log('hello ' + name)
+// }
+
+// 呼び出し元より上じゃないとエラーになる
+// const hello = function (name = 'Kaira') {
+//   console.log('hello ' + name)
+// }
+
+// アロー関数
+// const hello = name => console.log('hello ' + name)
+// const hello = (name, age) => console.log('hello' + name + age)
+
+// hello('Takaki Nakamura') // hello Takaki Nakamura
+// hello('Naomi Etsui') // hello Naomi Etsui
+// hello() // hello Kaira
+
+// hello('Takaki Nakamura', 53)
+// hello('Naomi Etsui', 60)
+
+const hello = (name, age) => 40; // 40
+
+const arry = [1, 2, 3, 4, 5, 6];
+
+// arry.forEach(function (value) {
+//   console.log(value) // 1 2 3 4 5 6
+// })
+
+arry.forEach(value => console.log(value)) // 1 2 3 4 5 6
+```
