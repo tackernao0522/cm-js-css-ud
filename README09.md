@@ -38,7 +38,7 @@ forEach(arry, double);
 
 + `04_JavaScriptの基礎を固める/076_配列とforEachメソッド/start/main.js`を編集<br>
 
-````js:main.js
+```js:main.js
 const arry = [1, 2, 3, 4, 5];
 
 // どちらかというと forEachメソッドになれた方が良い
@@ -58,4 +58,42 @@ arry.forEach(val => console.log(val))
 //   const v = arry[i]
 //   console.log(v)
 // }
+```
+
+## 66. [文法編] 配列とreduceメソッド
+
++ JavaScriptの基礎を固める/078_配列とreduceメソッド/start/main.js`を編集<br>
+
+```js:main.js
+const arry = [1, 2, 3, 4, 5];
+
+// arry.reduce(function (accu, curr) {
+//   console.log(accu, curr)
+//   return accu + curr
+//   // 1 2
+//   // 3 3
+//   // 6 4
+//   // 10 5
+// });
+
+arry.reduce(function (accu, curr) {
+  console.log(accu, curr)
+  // return accu + curr
+}, 10);
+
+// const str = 'animation';
+// const strArry = str.split('')
+
+// console.log(strArry) // (9) ['a', 'n', 'i', 'm', 'a', 't', 'i', 'o', 'n']
+
+const str = 'animation';
+const strArry = str.split('');
+
+const result = strArry.reduce((accu, curr) => {
+  console.log(accu)
+  return `${accu}<${curr}>`
+  // return accu + '<' + curr + '>';
+}, "")
+
+console.log(result);
 ```
