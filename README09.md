@@ -126,3 +126,77 @@ function reduce(arry, callback, defaultValue) {
 const result = reduce(strArry, tag, ""); // return accuが返ってくる
 console.log(result); // <a><n><i><m><a><t><i><o><n>
 ```
+
+## 68. [DOM編] JavaScriptでHTML参照・更新！セレクターAPIを学ぼう！
+
+```:console
+> document.querySelector('#main-title') // こっちを使った方が良い
+=> <h1 id="main-title">JavaScript基礎</h1>
+
+> document.body.children
+=> HTMLCollection(4) [h1#main-title, h2.sub-title, ul, script, main-title: h1#main-title]
+
+> document.getElementById('main-title') // 古い
+=> <h1 id="main-title">JavaScript基礎</h1>
+
+docment.querySelector('.sub-title') // classで取得する場合
+=> <h2 class="sub-title">DOM(Document Object Model)とは？</h2>
+
+document.querySelector('h1') // tagで取得する場合
+=> <h1 id="main-title">JavaScript基礎</h1>
+
+document.querySelector('.item')
+=> <li class="item item-1">HTMLを<strong class="v1">JavaScript</strong>から操作できるようにしたインターフェイス。</li> // 一番初めに一致するものしか取得できない
+
+document.querySelectorAll('.item') // 全てを取得する場合
+=> NodeList(3) [li.item.item-1, li.item.item-2, li.item.item-3]
+
+document.querySelectAll('ul > li')
+=> NodeList(3) [li.item.item-1, li.item.item-2, li.item.item-3]
+
+const h1 = document.querySelector('#main-title')
+h1.innerHTML
+=> "JavaScript基礎"
+
+h1.innerHTML = 'AAAAAAA' // ブラウザ上の文字列が変わる
+"AAAAAAAA"
+
+h1.innerHTML = 'AAAAAAA <span style="color: blue">BBBBB</span>'
+=> 'AAAAAAA <span style="color: blue">BBBBB</span>'
+
+h1.textContent
+=> 'AAAAAAA BBBBB'
+
+h1.textContent = 'AAAAAAAA <span style="color: blue">BBBBB</span>'
+=> 'AAAAAAAA <span style="color: blue">BBBBB</span>' // エスケープされて表示される
+
+h1.style.color = 'red'
+=> "red"
+
+h1.style.backgroundColor = 'gray'
+=> 'gray'
+
+// 一旦クリアして
+const h1 = document.querySelector('#main-title')
+h1.classList.add('underline') // h1タグにclass="underline"が追加される
+
+h1.classList.remove('underline') // class="underline"を削除する
+
+h1.classList.toggle('underline') // 呼ぶ度にtrue falseが切り替わる
+
+const ul = document.querySelector('ul')
+ul.style.color = 'red'
+=> 'red'
+
+const firstLi = ul.qureySelector('li')
+firstLi.style.color = 'black'
+
+const li = document.querySelectorAll('li')
+li[0].style.color = 'purple' // このように一つずつ変えても良いが
+=> 'purple'
+
+li
+=> NodeList(3) [li,item.item-1, li.item.item-2, li.item.item-3]
+
+li.forEach(node => node.style.color = 'purple'); // これだといっぺんに変えれられる
+```
