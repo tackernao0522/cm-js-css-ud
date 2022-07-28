@@ -271,3 +271,60 @@ btn.onclick = changeColor; // 参考程度 addEventListennerを使うこと
 // btn.addEventListener('mouseenter', hello);
 // btn.removeEventListener('click', hello);
 ```
+
+## 70. [DOM編] 超基礎！画面初期化時にコードを実行！DOMContentLoadedとLoadの違いについて学ぼう！
+
++ `04_JavaScriptの基礎を固める/100_DOMイベント（ページの初期化）/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script src="main.js"></script> <!-- エラーになるがDOMContentLoadedの中に定義するとエラーにならない -->
+    <h1 id="main-title">DOMContentLoaded vs load</h1>
+    <strong class="dcl">DOMContentLoaded</strong>
+    <strong class="load">load</strong>
+    <img src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format"
+        alt="" width="300" />
+    <img src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format"
+        alt="" width="300" />
+    <a style="position: fixed; bottom:0; left: 0;" href="https://codepen.io/LukeAskew/pen/LnJsE"
+        target="_blank">@LukeAskew</a>
+    <!-- <script src="main.js"></script> -->
+</body>
+
+</html>
+```
+
++ `04_JavaScriptの基礎を固める/100_DOMイベント（ページの初期化）/start/main.js`を編集<br>
+
+```js:main.js
+// const h1 = document.querySelector('h1');
+// h1.style.color = 'red';
+
+// const dcl = document.querySelector('.dcl');
+// const load = document.querySelector('.load');
+
+// // windowも使える
+document.addEventListener("DOMContentLoaded", function () {
+    const h1 = document.querySelector('h1');
+    h1.style.color = 'red';
+    // dcl.classList.add('done');
+});
+
+// // documentは使えない (表示も遅いのでDOMContentLoadedの方を使った方が良い)
+// window.addEventListener("load", function () {
+// const h1 = document.querySelector('h1');
+// h1.style.color = 'red';
+//     load.classList.add('done');
+// });
+```
