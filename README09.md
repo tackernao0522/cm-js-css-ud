@@ -328,3 +328,107 @@ document.addEventListener("DOMContentLoaded", function () {
 //     load.classList.add('done');
 // });
 ```
+
+## 71. [DOM編] [演習] 文字列をHTMLタグに分割してみよう！！
+
++ `04_JavaScriptの基礎を固める/110_DOM操作練習（文字分割）/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="container">
+        <div class="animate-title inview">
+            ANIMATION
+        </div>
+        <button onclick="document.querySelector('.animate-title').classList.toggle('inview');">Animation</button>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
+```
+
++ `04_JavaScriptの基礎を固める/110_DOM操作練習（文字分割）/start/main.js`を編集<br>
+
+```js:main.js
+document.addEventListener('DOMContentLoaded', function () {
+  const el = document.querySelector('.animate-title');
+  const str = el.innerHTML.trim();
+  let concatStr = '';
+
+  for (let c of str) {
+    concatStr += `<span class="char">${c}</span>`;
+  }
+  el.innerHTML = concatStr;
+})
+```
+
++ `04_JavaScriptの基礎を固める/110_DOM操作練習（文字分割）/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="container">
+        <div class="animate-title inview">
+            PLAY ANIMATION
+        </div>
+        <button onclick="document.querySelector('.animate-title').classList.toggle('inview');">Animation</button>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
+```
+
++ `04_JavaScriptの基礎を固める/110_DOM操作練習（文字分割）/start/main.js`を編集<br>
+
+```js:main.js
+document.addEventListener('DOMContentLoaded', function () {
+  const el = document.querySelector('.animate-title');
+  const str = el.innerHTML.trim();
+  let concatStr = '';
+
+  for (let c of str) {
+    // c = c.replace(' ', '&nbsp;')
+    c = c.replace(/\s+/, '&nbsp;'); // 正規表現での書き方
+    concatStr += `<span class="char">${c}</span>`;
+  }
+  el.innerHTML = concatStr;
+})
+```
+
++ `04_JavaScriptの基礎を固める/110_DOM操作練習（文字分割）/start/main.js`を編集(reduceメソッドでの書き方)<br>
+
+```js:main.js
+document.addEventListener('DOMContentLoaded', function () {
+  const el = document.querySelector('.animate-title');
+  const str = el.innerHTML.trim().split(""); // 空文字で配列に直す(reduceメソッドを使う際に配列にする必要がある)
+
+  el.innerHTML = str.reduce((acc, curr) => {
+    curr = curr.replace(/\s+/, '&nbsp;');
+    return `${acc}<span class="char">${curr}</span>`;
+  }, "");
+});
+```
