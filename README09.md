@@ -200,3 +200,74 @@ li
 
 li.forEach(node => node.style.color = 'purple'); // これだといっぺんに変えれられる
 ```
+
+## 69. [DOM編] 画面に機能を追加！イベントリスナーでイベントを登録！
+
++ `04_JavaScriptの基礎を固める/090_DOMにイベントを登録してみよう/start/index.html`を編集<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="main-title">JavaScript基礎</h1>
+    <h2 class="sub-title">DOM(Document Object Model)にイベントリスナーを登録してみよう。</h2>
+
+    <!-- <button id="btn">Change Title Color</button> -->
+    <button id="btn" onclick="changeColor()">Change Title Color</button> <!-- この中でメソッドを呼ぶ方法(非推奨) -->
+    <script src="main.js"></script>
+</body>
+
+</html>
+```
+
++ `04_JavaScriptの基礎を固める/090_DOMにイベントを登録してみよう/start/main.js`を編集<br>
+
+```js:main.js
+const btn = document.querySelector('#btn')
+const h1 = document.querySelector('h1')
+
+// btn.addEventListener('click', function () {
+//   alert('hello');
+// });
+
+// よりベターな方法
+// const hello = function() {
+//   alert('hello')
+// }
+
+// or
+
+// function hello() {
+//   // const h1 = document.querySelector('h1') // 関数の中に入れることもできる
+//   // alert('hello');
+//   // btn.style.color = 'red';
+//   h1.style.color = 'red';
+//   // this.style.color = 'red';
+//   // console.log(this) // <button id="btn" style="color: red;">Change Title Color</button>
+// };
+
+function changeColor() {
+  h1.style.color = 'red';
+};
+
+function changeBgColor() {
+  h1.style.backgroundColor = 'green';
+};
+// btn.addEventListener('click', hello);
+// btn.addEventListener('click', changeColor);
+// btn.addEventListener('click', changeBgColor);
+
+btn.onclick = changeColor; // 参考程度 addEventListennerを使うこと
+// btn.onclick = changeBgColor; // 参考程度 addEventListennerを使うこと 後から書いた方が上書きされるので一つしか登録できない
+// btn.removeEventListener('click', changeBgColor);
+// btn.addEventListener('mouseenter', hello);
+// btn.removeEventListener('click', hello);
+```
