@@ -250,3 +250,78 @@ const obj2 = new MyObj();
 obj.printFullName(); // Mafia
 obj2.printFullName(); // Mafia
 ```
+
+## 76. [おさらい] thisとbindの関係
+
++ `04_JavaScriptの基礎を固める/115_thisとbind/start/main.js`を編集<br>
+
+```js:main.js
+const obj = {
+    first_name: 'Mafia',
+    last_name: 'Code',
+    printFullName: function () {
+        console.log(this); // obj
+
+        window.setTimeout(function () {
+            console.log(this); // window object
+        });
+    }
+}
+
+obj.printFullName();
+```
+
++ `04_JavaScriptの基礎を固める/115_thisとbind/start/main.js`を編集<br>
+
+```js:main.js
+const obj = {
+    first_name: 'Mafia',
+    last_name: 'Code',
+    printFullName: function () {
+        console.log(this); // obj
+        const _that = this;
+
+        window.setTimeout(function () {
+            console.log(_that); // window objectからobjに変わる
+        });
+    }
+}
+
+obj.printFullName();
+```
+
++ `04_JavaScriptの基礎を固める/115_thisとbind/start/main.js`を編集<br>
+
+```js:main.js
+const obj = {
+    first_name: 'Mafia',
+    last_name: 'Code',
+    printFullName: function () {
+        console.log(this); // obj
+
+        window.setTimeout(function () {
+            console.log(this); // window objectからobjに変わる
+        }.bind(this));
+    }
+}
+
+obj.printFullName();
+```
+
++ `04_JavaScriptの基礎を固める/115_thisとbind/start/main.js`を編集<br>
+
+```js:main.js
+const obj = {
+    first_name: 'Mafia',
+    last_name: 'Code',
+    printFullName: function () {
+        console.log(this); // obj
+
+        window.setTimeout(function () {
+            console.log(this); // window objectから{first_name: 'Takaki'}に変わる
+        }.bind({first_name: 'Takaki'}));
+    }
+}
+
+obj.printFullName();
+```
