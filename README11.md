@@ -325,3 +325,75 @@ const obj = {
 
 obj.printFullName();
 ```
+
+## 77. [おさらい] TextAnimationクラスをもう一度見てみよう
+
++ `04_JavaScriptの基礎を固める/112_thisを使いこなそう/start/main.js`を編集<br>
+
+```js:main.js
+document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.querySelector('#btn');
+    const ta = new TextAnimation('.animate-title');
+    console.log(ta);
+    const ta2 = new TextAnimation('.animate-title-2');
+    ta.animate();
+    ta2.animate();
+    btn.addEventListener('click', ta.animate.bind(ta));
+});
+
+// console.log(this); // windowオブジェクトを指す
+
+class TextAnimation {
+    constructor(el) {
+        // console.log(this); // ta, ta2を指す
+        this.el = document.querySelector(el);
+        this.chars = this.el.innerHTML.trim().split("");
+        this.el.innerHTML = this._splitText();
+    }
+    _splitText() {
+        return this.chars.reduce((acc, curr) => {
+            curr = curr.replace(/\s+/, '&nbsp;');
+            return `${acc}<span class="char">${curr}</span>`;
+        }, "");
+    }
+    animate() {
+        // console.log(this) // taを指す
+        this.el.classList.toggle('inview');
+    }
+}
+```
+
++ `04_JavaScriptの基礎を固める/112_thisを使いこなそう/start/main.js`を編集(bindを使わない)<br>
+
+```js:main.js
+document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.querySelector('#btn');
+    const ta = new TextAnimation('.animate-title');
+    console.log(ta);
+    const ta2 = new TextAnimation('.animate-title-2');
+    ta.animate();
+    ta2.animate();
+    btn.addEventListener('click', function() {ta.animate()});
+});
+
+// console.log(this); // windowオブジェクトを指す
+
+class TextAnimation {
+    constructor(el) {
+        // console.log(this); // ta, ta2を指す
+        this.el = document.querySelector(el);
+        this.chars = this.el.innerHTML.trim().split("");
+        this.el.innerHTML = this._splitText();
+    }
+    _splitText() {
+        return this.chars.reduce((acc, curr) => {
+            curr = curr.replace(/\s+/, '&nbsp;');
+            return `${acc}<span class="char">${curr}</span>`;
+        }, "");
+    }
+    animate() {
+        // console.log(this) // taを指す
+        this.el.classList.toggle('inview');
+    }
+}
+```

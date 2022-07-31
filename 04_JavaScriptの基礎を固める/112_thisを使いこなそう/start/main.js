@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     const btn = document.querySelector('#btn');
     const ta = new TextAnimation('.animate-title');
+    console.log(ta);
     const ta2 = new TextAnimation('.animate-title-2');
     ta.animate();
     ta2.animate();
-    btn.addEventListener('click', function () {
-        ta.animate();
-    });
+    btn.addEventListener('click', function() {ta.animate()});
 });
 
 // console.log(this); // windowオブジェクトを指す
