@@ -70,3 +70,183 @@ const obj2 = new MyObj();
 obj.printFullName(); // hello
 obj2.__proto__.printFullName(); // hello '__proto__'は省略できる
 ```
+
+## 75. [おさらい] thisとオブジェクト
+
++ `04_JavaScriptの基礎を固める/114_thisとオブジェクト/start/main.js`を編集<br>
+
+```js:main.js
+const obj = {
+    first_name: 'Mafia',
+    last_name: 'Code',
+    printFullName: function () {
+        console.log(this.first_name); // thisはobjを指す
+    }
+}
+
+// class MyObj {
+//     constructor() {
+//         this.first_name = 'Mafia';
+//         this.last_name = 'Code';
+//     }
+
+//     printFullName() {
+//         console.log(this.first_name);
+//         const fn = function () {
+//             console.log(this);
+//         };
+//         window.setTimeout(fn)
+//     }
+// }
+
+// const obj2 = new MyObj();
+
+
+obj.printFullName(); // Mafia
+// obj2.printFullName();
+```
+
++ `04_JavaScriptの基礎を固める/114_thisとオブジェクト/start/main.js`を編集<br>
+
+```js:main.js
+const obj = {
+    first_name: 'Mafia',
+    last_name: 'Code',
+    printFullName: function () {
+        console.log(this.first_name); // thisはobjを指す
+    }
+}
+
+class MyObj {
+    constructor() {
+        this.first_name = 'Mafia';
+        this.last_name = 'Code';
+    }
+
+    printFullName() {
+        console.log(this.first_name);
+    }
+}
+
+const obj2 = new MyObj();
+
+
+obj.printFullName(); // Mafia
+obj2.printFullName(); // Mafia
+```
+
++ `04_JavaScriptの基礎を固める/114_thisとオブジェクト/start/main.js`を編集<br>
+
+```js:main.js
+const obj = {
+    first_name: 'Mafia',
+    last_name: 'Code',
+    printFullName: function () {
+        console.log(this.first_name); // thisはobjを指す
+        window.setTimeout(function() {
+            console.log(this); // thisはwindowオブジェクトになる
+        })
+    }
+}
+
+class MyObj {
+    constructor() {
+        this.first_name = 'Mafia';
+        this.last_name = 'Code';
+    }
+
+    printFullName() {
+        console.log(this.first_name);
+    }
+}
+
+const obj2 = new MyObj();
+
+
+obj.printFullName(); // Mafia
+obj2.printFullName(); // Mafia
+```
+
++ `04_JavaScriptの基礎を固める/114_thisとオブジェクト/start/main.js`を編集<br>
+
+```js:main.js
+const obj = {
+    first_name: 'Mafia',
+    last_name: 'Code',
+    printFullName: function () {
+        console.log(this.first_name); // thisはobjを指す
+        const fn = function() {
+            console.log(this);
+        };
+        window.setTimeout(fn);
+    }
+}
+
+const window = {
+    setTimeout: function(fn) {
+        fn();
+    }
+}
+
+class MyObj {
+    constructor() {
+        this.first_name = 'Mafia';
+        this.last_name = 'Code';
+    }
+
+    printFullName() {
+        console.log(this.first_name);
+    }
+}
+
+const obj2 = new MyObj();
+
+
+obj.printFullName(); // Mafia
+obj2.printFullName(); // Mafia
+```
+
++ `04_JavaScriptの基礎を固める/114_thisとオブジェクト/start/main.js`を編集<br>
+
+```js:main.js
+const obj = {
+    first_name: 'Mafia',
+    last_name: 'Code',
+    printFullName: function () {
+        console.log(this.first_name); // thisはobjを指す
+        const fn = function () {
+            console.log(this);
+        };
+        window.setTimeout(function () {
+            console.log(this);
+        })
+    }
+}
+
+const window = {
+    setTimeout: function (fn) {
+        fn();
+    }
+}
+
+class MyObj {
+    constructor() {
+        this.first_name = 'Mafia';
+        this.last_name = 'Code';
+    }
+
+    printFullName() {
+        console.log(this.first_name);
+        const fn = function () {
+            console.log(this);
+        };
+        window.setTimeout(fn);
+    }
+}
+
+const obj2 = new MyObj();
+
+
+obj.printFullName(); // Mafia
+obj2.printFullName(); // Mafia
+```
