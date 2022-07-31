@@ -193,3 +193,212 @@ class TextAnimation {
     }
 }
 ```
+
+## 73. [レベルアップ] thisを学んでクラスやオブジェクトを変幻自在に操ろう！！
+
++ `04_JavaScriptの基礎を固める/112_thisを使いこなそう/start/main.js`を編集<br>
+
+```js:main.js
+document.addEventListener('DOMContentLoaded', function () {
+    const ta = new TextAnimation('.animate-title');
+    const ta2 = new TextAnimation('.animate-title-2');
+    ta.animate();
+    ta2.animate();
+});
+
+// console.log(this); // windowオブジェクトを指す
+
+class TextAnimation {
+    constructor(el) {
+        // console.log(this); // ta, ta2を指す
+        this.el = document.querySelector(el);
+        this.chars = this.el.innerHTML.trim().split("");
+        this.el.innerHTML = this._splitText();
+    }
+    _splitText() {
+        return this.chars.reduce((acc, curr) => {
+            curr = curr.replace(/\s+/, '&nbsp;');
+            return `${acc}<span class="char">${curr}</span>`;
+        }, "");
+    }
+    animate() {
+        setTimeout(function () {
+            console.log(this); // windowオブジェクトを指す
+            this.el.classList.toggle('inview'); // エラーになる
+        });
+    }
+}
+```
+
++ `04_JavaScriptの基礎を固める/112_thisを使いこなそう/start/main.js`を編集(bind)<br>
+
+```js:main.js
+document.addEventListener('DOMContentLoaded', function () {
+    const ta = new TextAnimation('.animate-title');
+    const ta2 = new TextAnimation('.animate-title-2');
+    ta.animate();
+    ta2.animate();
+});
+
+// console.log(this); // windowオブジェクトを指す
+
+class TextAnimation {
+    constructor(el) {
+        // console.log(this); // ta, ta2を指す
+        this.el = document.querySelector(el);
+        this.chars = this.el.innerHTML.trim().split("");
+        this.el.innerHTML = this._splitText();
+    }
+    _splitText() {
+        return this.chars.reduce((acc, curr) => {
+            curr = curr.replace(/\s+/, '&nbsp;');
+            return `${acc}<span class="char">${curr}</span>`;
+        }, "");
+    }
+    animate() {
+
+        console.log(this); // ta, ta2を指す
+
+        setTimeout(function () {
+            console.log(this); // ta, ta2を指す
+            this.el.classList.toggle('inview');
+        }.bind(this)); // bindでthisを束縛できて ta, ta2を指すことになる
+    }
+}
+```
+
++ `04_JavaScriptの基礎を固める/112_thisを使いこなそう/start/main.js`を編集(thisを_that変数に代入)<br>
+
+```js:main.js
+document.addEventListener('DOMContentLoaded', function () {
+    const ta = new TextAnimation('.animate-title');
+    const ta2 = new TextAnimation('.animate-title-2');
+    ta.animate();
+    ta2.animate();
+});
+
+// console.log(this); // windowオブジェクトを指す
+
+class TextAnimation {
+    constructor(el) {
+        // console.log(this); // ta, ta2を指す
+        this.el = document.querySelector(el);
+        this.chars = this.el.innerHTML.trim().split("");
+        this.el.innerHTML = this._splitText();
+    }
+    _splitText() {
+        return this.chars.reduce((acc, curr) => {
+            curr = curr.replace(/\s+/, '&nbsp;');
+            return `${acc}<span class="char">${curr}</span>`;
+        }, "");
+    }
+    animate() {
+        const _that = this;
+        console.log(_that); // ta, ta2を指す
+
+        setTimeout(function () {
+            console.log(_that); // ta, ta2を指す
+            _that.el.classList.toggle('inview');
+        });
+    }
+}
+```
+
++ `04_JavaScriptの基礎を固める/112_thisを使いこなそう/start/index.html`を編集`<br>
+
+```html:index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <div class="animate-title">
+            PLAY ANIMATION
+        </div>
+        <div class="animate-title-2">
+            ANIMATE STRING
+        </div>
+        <button id="btn">Animation</button>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
+```
+
++ `04_JavaScriptの基礎を固める/112_thisを使いこなそう/start/main.js`を編集<br>
+
+```js:main.js
+document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.querySelector('#btn');
+    const ta = new TextAnimation('.animate-title');
+    const ta2 = new TextAnimation('.animate-title-2');
+    ta.animate();
+    ta2.animate();
+    btn.addEventListener('click', ta.animate.bind(ta));
+});
+
+// console.log(this); // windowオブジェクトを指す
+
+class TextAnimation {
+    constructor(el) {
+        // console.log(this); // ta, ta2を指す
+        this.el = document.querySelector(el);
+        this.chars = this.el.innerHTML.trim().split("");
+        this.el.innerHTML = this._splitText();
+    }
+    _splitText() {
+        return this.chars.reduce((acc, curr) => {
+            curr = curr.replace(/\s+/, '&nbsp;');
+            return `${acc}<span class="char">${curr}</span>`;
+        }, "");
+    }
+    animate() {
+        // console.log(this) // taを指す
+        this.el.classList.toggle('inview');
+    }
+}
+```
+
++ `04_JavaScriptの基礎を固める/112_thisを使いこなそう/start/main.js`を編集(bindを使いたくない場合)<br>
+
+```js:main.js
+document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.querySelector('#btn');
+    const ta = new TextAnimation('.animate-title');
+    const ta2 = new TextAnimation('.animate-title-2');
+    ta.animate();
+    ta2.animate();
+    btn.addEventListener('click', function () {
+        // この中でta.animate()を呼び出す
+        ta.animate();
+    });
+});
+
+// console.log(this); // windowオブジェクトを指す
+
+class TextAnimation {
+    constructor(el) {
+        // console.log(this); // ta, ta2を指す
+        this.el = document.querySelector(el);
+        this.chars = this.el.innerHTML.trim().split("");
+        this.el.innerHTML = this._splitText();
+    }
+    _splitText() {
+        return this.chars.reduce((acc, curr) => {
+            curr = curr.replace(/\s+/, '&nbsp;');
+            return `${acc}<span class="char">${curr}</span>`;
+        }, "");
+    }
+    animate() {
+        // console.log(this) // taを指す
+        this.el.classList.toggle('inview');
+    }
+}
+```
