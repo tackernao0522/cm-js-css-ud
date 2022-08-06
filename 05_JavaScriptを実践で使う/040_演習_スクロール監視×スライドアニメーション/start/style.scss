@@ -1,4 +1,4 @@
-@import "mixin";
+@import 'mixin';
 
 img {
   max-width: 100%;
@@ -8,9 +8,10 @@ img {
 .cover-slide {
   position: relative;
   overflow: hidden;
+  margin-bottom: 80vh;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     z-index: 2;
     top: 0;
@@ -104,7 +105,7 @@ img {
 
 .hover-darken {
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -136,7 +137,7 @@ img {
 
 .img-bg50 {
   position: relative;
-  
+
   &::before {
     display: block;
     content: '';
