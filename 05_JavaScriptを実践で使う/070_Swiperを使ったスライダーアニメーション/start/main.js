@@ -1,7 +1,8 @@
-const swiper = new Swiper('.swiper', {
-  // Optional parameters
-  // direction: 'vertical',
-  // loop: true, // falseにするとloopしなくなる(削除でもfalse)
-  // effect: 'fade',
-  effect: 'coverflow',
+document.addEventListener('DOMContentLoaded', function () {
+  const hero = new HeroSlider('.swiper');
+  hero.start();
+
+  // setTimeout(() => {
+  //   hero.stop();
+  // }, 5000);
 });
