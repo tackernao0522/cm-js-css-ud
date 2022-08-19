@@ -1,0 +1,30 @@
+h1 {
+  color: red;
+  background: yellow;
+}
+@media (min-width: 480px) {
+  h1 {
+    color: blue;
+  }
+}
+@media (min-width: 600px) {
+  h1 {
+    color: purple;
+  }
+}
+@media (min-width: 960px) {
+  h1 {
+    color: green;
+  }
+}
+@media (min-width: 1280px) {
+  h1 {
+    color: orange;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  h1 {
+    color: purple;
+  }
+}/*# sourceMappingURL=style.css.map */
