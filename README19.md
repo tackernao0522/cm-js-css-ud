@@ -119,3 +119,57 @@ h1 {
   }
 }
 ```
+
+## 101. モバイルファーストの実装について学ぼう
+
++ `06_レスポンシブデザイン/010_レスポンシブデザイン/start/style.scss`を編集(最も一般的な書き方)<br>
+
+```scss:style.scss
+@media screen and (max-width: 600px) {
+  h1 {
+    color: red;
+    background: yellow;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  h1 {
+    color: blue;
+    background: yellow;
+  }
+}
+```
+
++ `06_レスポンシブデザイン/010_レスポンシブデザイン/start/style.scss`を編集(画面幅の小さい方からスタイルを適用するモバイルファースト)<br>
+
+```scss:style.scss
+// モバイル用のスタイル
+h1 {
+  color: red;
+  background: yellow;
+}
+
+// デスクトップ用のスタイル
+@media screen and (min-width: 601px) {
+  h1 {
+    color: blue;
+  }
+}
+```
+
++ `06_レスポンシブデザイン/010_レスポンシブデザイン/start/style.scss`を編集(デスクトップファースト)<br>
+
+```scss:style.scss
+// デスクトップ用のスタイル
+h1 {
+  color: red;
+  background: yellow;
+}
+
+// モバイル用のスタイル
+@media screen and (max-width: 600px) {
+  h1 {
+    color: blue;
+  }
+}
+```
