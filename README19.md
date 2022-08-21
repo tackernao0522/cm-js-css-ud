@@ -265,3 +265,156 @@ h1 {
   }
 }
 ```
+
+## 104. Sassでメディアクエリを汎用的な部品として作成してみよう
+
++ `06_レスポンシブデザイン/020_Sassでレスポンシブの部品作成/start/style.scss`を編集<br>
+
+```scss:style.scss
+// モバイル用のスタイル
+h1 {
+  color: red;
+  background: yellow;
+
+  // 480px以上 スマホ横向き
+  @media screen and (min-width: 480px) {
+    color: blue;
+  }
+
+  // 600px以上 タブレット縦向き
+  @media screen and (min-width: 600px) {
+    color: purple;
+  }
+
+  // 960px以上 ノートPC等の小さなPC
+  @media screen and (min-width: 960px) {
+    color: purple;
+  }
+
+  // 1280px以上 デスクトップPC
+  @media screen and (min-width: 1280px) {
+    color: green;
+  }
+}
+
+// ratinaディスプレイ
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  h1 {
+    color: orange;
+  }
+}
+```
+
++ `06_レスポンシブデザイン/020_Sassでレスポンシブの部品作成/start/style.scss`を編集<br>
+
+```scss:style.scss
+$breakpoints: (
+  // 480px以上 スマホ横向き
+    'sm': '(min-width: 480px)',
+  // 600px以上 タブレット縦向き
+    'md': '(min-width: 600px)',
+  // 960px以上 ノートPC等の小さなPC
+    'lg': '(min-width: 960px)',
+  // 1280px以上 デスクトップPC
+    'xl': '(min-width: 1280px)'
+);
+
+// デフォルト値はmdになる
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+// モバイル用のスタイル
+h1 {
+  color: red;
+  background: yellow;
+
+  @include mq(sm) {
+    color: blue;
+    background: yellow;
+  }
+
+  // mdはデフォルト値なので空白でも良い
+  @include mq(md) {
+    color: purple;
+  }
+
+  @include mq(lg) {
+    color: green;
+  }
+
+  @include mq(xl) {
+    color: orange;
+  }
+}
+
+// ratinaディスプレイ
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  h1 {
+    color: orange;
+  }
+}
+```
+
++ `06_レスポンシブデザイン/020_Sassでレスポンシブの部品作成/start/_mq.scss`を作成<br>
+
++ `06_レスポンシブデザイン/020_Sassでレスポンシブの部品作成/start/_mq.scss`を編集<br>
+
+```scss:_mq.scss
+$breakpoints: (
+  // 480px以上 スマホ横向き
+    'sm': '(min-width: 480px)',
+  // 600px以上 タブレット縦向き
+    'md': '(min-width: 600px)',
+  // 960px以上 ノートPC等の小さなPC
+    'lg': '(min-width: 960px)',
+  // 1280px以上 デスクトップPC
+    'xl': '(min-width: 1280px)'
+);
+
+// デフォルト値はmdになる
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+```
+
++ `06_レスポンシブデザイン/020_Sassでレスポンシブの部品作成/start/style.scss`を編集<br>
+
+```scss:style.scss
+@use "mq" as *;
+
+// モバイル用のスタイル
+h1 {
+  color: red;
+  background: yellow;
+
+  @include mq(sm) {
+    color: blue;
+    // background: yellow;
+  }
+
+  // mdはデフォルト値なので空白でも良い
+  @include mq(md) {
+    color: purple;
+  }
+
+  @include mq(lg) {
+    color: green;
+  }
+
+  @include mq(xl) {
+    color: orange;
+  }
+}
+
+// ratinaディスプレイ
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  h1 {
+    color: orange;
+  }
+}
+```

@@ -1,17 +1,31 @@
+@use "mq" as *;
+
 // モバイル用のスタイル
 h1 {
   color: red;
   background: yellow;
 
-  // デスクトップ用のスタイル
-  @media screen and (min-width: 601px) {
+  @include mq(sm) {
     color: blue;
+  }
+
+  // mdはデフォルト値なので空白でも良い
+  @include mq(md) {
+    color: purple;
+  }
+
+  @include mq(lg) {
+    color: green;
+  }
+
+  @include mq(xl) {
+    color: orange;
   }
 }
 
 // ratinaディスプレイ
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
   h1 {
-    color: purple;
+    color: orange;
   }
 }
