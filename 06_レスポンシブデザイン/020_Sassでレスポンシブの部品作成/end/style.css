@@ -21,10 +21,4 @@ h1 {
   h1 {
     color: orange;
   }
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-  h1 {
-    color: purple;
-  }
 }/*# sourceMappingURL=style.css.map */

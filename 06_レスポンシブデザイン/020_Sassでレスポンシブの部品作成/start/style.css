@@ -2,9 +2,14 @@ h1 {
   color: red;
   background: yellow;
 }
-
 @media screen and (min-width: 601px) {
   h1 {
     color: blue;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  h1 {
+    color: purple;
   }
 }/*# sourceMappingURL=style.css.map */

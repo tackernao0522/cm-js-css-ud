@@ -173,3 +173,95 @@ h1 {
   }
 }
 ```
+
+## 102. [Tips] ビューポートとは？メディアクエリが効かない時の対処法
+
+動画を参考<br>
+
+## 103. メディアクエリの文法に意味について学ぼう
+
++ `06_レスポンシブデザイン/020_Sassでレスポンシブの部品作成/start/style.scss`を編集<br>
+
+```scss:style.scss
+// モバイル用のスタイル
+h1 {
+  color: red;
+  background: yellow;
+}
+
+// デスクトップ用のスタイル
+// print = 印刷時に適用
+@media print (min-width: 601px) {
+  h1 {
+    color: blue;
+  }
+}
+```
+
++ `06_レスポンシブデザイン/020_Sassでレスポンシブの部品作成/start/style.scss`を編集<br>
+
+```scss:style.scss
+// モバイル用のスタイル
+h1 {
+  color: red;
+  background: yellow;
+}
+
+// デスクトップ用のスタイル
+// all = 印刷時とブラウザ表示時の両方に適用 allを削除しても同じ意味になる
+@media all (min-width: 601px) {
+  h1 {
+    color: blue;
+  }
+}
+```
+
++ `06_レスポンシブデザイン/020_Sassでレスポンシブの部品作成/start/style.scss`を編集<br>
+
+```scss:style.scss
+// モバイル用のスタイル
+h1 {
+  color: red;
+  background: yellow;
+}
+
+// デスクトップ用のスタイル
+@media screen and (min-width: 601px) {
+  h1 {
+    color: blue;
+  }
+}
+
+// ratinaディスプレイ
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  h1 {
+    color: purple;
+  }
+}
+```
+
++ 開発ツールのresponsiveで `add device pixel ratio`をクリックしてみる<br>
+
++ DPR2以上にしないとpurpleにならない<br>
+
++ `06_レスポンシブデザイン/020_Sassでレスポンシブの部品作成/start/style.scss`を編集(sassに限り)<br>
+
+```scss:style.scss
+// モバイル用のスタイル
+h1 {
+  color: red;
+  background: yellow;
+
+  // デスクトップ用のスタイル
+  @media screen and (min-width: 601px) {
+    color: blue;
+  }
+}
+
+// ratinaディスプレイ
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  h1 {
+    color: purple;
+  }
+}
+```

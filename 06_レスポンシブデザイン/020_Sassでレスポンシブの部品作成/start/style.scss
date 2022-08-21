@@ -2,11 +2,16 @@
 h1 {
   color: red;
   background: yellow;
+
+  // デスクトップ用のスタイル
+  @media screen and (min-width: 601px) {
+    color: blue;
+  }
 }
 
-// デスクトップ用のスタイル
-@media screen and (min-width: 601px) {
+// ratinaディスプレイ
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
   h1 {
-    color: blue;
+    color: purple;
   }
 }
